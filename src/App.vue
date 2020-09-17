@@ -1,20 +1,33 @@
 <template>
-  <div id="app">
-    <div>
-      <button id="test" @click="setClose1">Open Window 1</button>
-      <button @click="setClose2">Open Window 2</button>
-      <button @click="test">{{valInput}}</button>
-      <PopUpWindow v-bind:active="close2" title="Client 2" v-on:clickClose="setClose2">
-        <antenn-system-component val-input="valInput" v-on:update="getEmit"></antenn-system-component>
-      </PopUpWindow>
+  <div id="app" >
+    <div ref="container">
+<!--    <div>-->
+<!--      <button style="margin: 10px" id="test" @click="setClose1">Open Window 1</button>-->
+<!--      <button style="margin: 10px" @click="setClose2">Open Window 2</button>-->
+<!--      <button style="margin: 10px" @click="test">{{ valInput }}</button>-->
+<!--    </div>-->
+      <DeviceDisplayComponent class="elem1">
+        <ItemDisplayComponent :parameters-display="parametersInput"></ItemDisplayComponent>
+      </DeviceDisplayComponent>
+      <DeviceDisplayComponent class="elem2">
+        <ItemDisplayComponent :parameters-display="parametersInput"></ItemDisplayComponent>
+      </DeviceDisplayComponent>
+      <DeviceDisplayComponent class="elem3">
+        <ItemDisplayComponent :parameters-display="parametersInput"></ItemDisplayComponent>
+      </DeviceDisplayComponent>
+      <DeviceDisplayComponent class="elem4">
+        <ItemDisplayComponent :parameters-display="parametersInput"></ItemDisplayComponent>
+      </DeviceDisplayComponent>
     </div>
   </div>
 </template>
 
 <script>
-import antSys from './components/AntennSystemComponent.vue'
 import PopUpWindow from './components/PopUpWindow'
 import AntennSystemComponent from './components/AntennSystemComponent'
+import DeviceDisplayComponent from './components/DeviceDisplayComponent'
+import ItemDisplayComponent from './components/ItemDisplayComponent'
+
 export default {
   name: 'App',
   data () {
@@ -22,15 +35,28 @@ export default {
       close1: false,
       close2: false,
       scaleActive: false,
-      zInd1: 1000,
-      zInd2: 1001,
-      valInput: 'Hey'
+      valInput: 'Hey',
+      parametersInput: [
+        {
+          nameParameter: 'Частота (МГц)',
+          valueParameter: 100
+        },
+        {
+          nameParameter: 'Ослабление, дБ',
+          valueParameter: -3
+        },
+        {
+          nameParameter: 'ВЧ выход',
+          valueParameter: '300'
+        }
+      ]
     }
   },
   components: {
     AntennSystemComponent,
     PopUpWindow,
-    antSys
+    DeviceDisplayComponent,
+    ItemDisplayComponent
   },
   methods: {
     setClose1 () {
@@ -57,22 +83,27 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
 .test {
   margin-top: 50px;
   margin-bottom: 50px;
   font-size: 30px;
   animation-iteration-count: infinite;
 }
+
 .scaled {
   transform: scale(1.5); /* Equal to scaleX(0.7) scaleY(0.7) */
 }
+
 .test {
   background-color: #f7f7f7;
 }
-.vdr.active:before{
+
+.vdr.active:before {
   outline: 1px solid #d6d6d6;
   overflow: visible;
 }
+
 .vdr-stick {
   box-sizing: border-box;
   position: absolute;
@@ -80,5 +111,25 @@ export default {
   background: none;
   border: none;
   box-shadow: none;
+}
+.elem1 {
+  position: absolute;
+  left:20%;
+  top: 10%;
+}
+.elem2 {
+  position: absolute;
+  left:40%;
+  top: 10%;
+}
+.elem3 {
+  position: absolute;
+  left:20%;
+  top: 40%;
+}
+.elem4 {
+  position: absolute;
+  left:40%;
+  top: 40%;
 }
 </style>

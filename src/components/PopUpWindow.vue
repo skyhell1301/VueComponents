@@ -69,11 +69,11 @@ export default {
     title: String,
     width: {
       type: Number,
-      default: 600
+      default: 350
     },
     height: {
       type: Number,
-      default: 600
+      default: 250
     },
     minHeight: {
       type: Number,
@@ -528,7 +528,6 @@ export default {
   top: -23px;
 }
 .buttons-box {
-  //box-shadow: 0 0 2px rgba(74,74,73,0.41);
   width: 70px;
   height: 35px;
   position: absolute;
@@ -539,14 +538,14 @@ export default {
 }
 
 .vue-window-modal .vue-window-modal-header .button-container {
-  //box-shadow: 0 0 2px rgba(74,74,73,0.41);
   height: 25px;
   width: 25px;
   margin-top: 7%;
   cursor: pointer;
+  transition: 0.3s;
 }
 .vue-window-modal .vue-window-modal-header .button-container:hover {
-  box-shadow: 0 0 1px rgba(0,0,0,0.5)
+  box-shadow: 0 0 1px rgba(0,0,0,0.5);
 }
 .size-btn {
   background-image: url('../assets/images/stopsquarebuttonformediainterface_87472.png');
