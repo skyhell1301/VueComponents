@@ -1,5 +1,5 @@
 <template>
-  <div id="app" >
+  <div id="app">
     <div ref="container">
 <!--    <div>-->
 <!--      <button style="margin: 10px" id="test" @click="setClose1">Open Window 1</button>-->
@@ -78,39 +78,8 @@ export default {
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-.test {
-  margin-top: 50px;
-  margin-bottom: 50px;
-  font-size: 30px;
-  animation-iteration-count: infinite;
-}
-
-.scaled {
-  transform: scale(1.5); /* Equal to scaleX(0.7) scaleY(0.7) */
-}
-
-.test {
-  background-color: #f7f7f7;
-}
-
-.vdr.active:before {
-  outline: 1px solid #d6d6d6;
-  overflow: visible;
-}
-
-.vdr-stick {
-  box-sizing: border-box;
-  position: absolute;
-  font-size: 1px;
-  background: none;
-  border: none;
-  box-shadow: none;
 }
 .elem1 {
   position: absolute;

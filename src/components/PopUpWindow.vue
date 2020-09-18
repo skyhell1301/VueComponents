@@ -2,15 +2,18 @@
   <div
     :id="windowId"
     class="vue-window-modal"
+    style="z-index: 9999"
+    @mouseover.once="addLiseners"
     v-bind:style="{backgroundColor}">
     <div :id="windowId + '-' + 'header'" class="vue-window-modal-header" @dblclick="setSizeWindow">
       <h2 class="title">{{ title }}</h2>
       <div class="buttons-box">
         <div class="button-container size-btn" @click="setSizeWindow"></div>
-        <div class="button-container close-btn"  @click="$emit('clickClose')"></div>
+        <div class="button-container close-btn"  @click="disponse"></div>
       </div>
     </div>
-    <slot name="default"></slot>
+    <slot>
+    </slot>
     <div
       v-for="stick in sticks"
       class="vdr-stick"
@@ -52,8 +55,8 @@ export default {
       })(),
       widthToString: '',
       heightToString: '',
-      widthWindow: '',
-      heightWindow: '',
+      widthWindow: 300,
+      heightWindow: 300,
       stickSize: 8,
       isCloseRectangleActive: false,
       widthCloseRectangle: '',
@@ -124,7 +127,6 @@ export default {
       _windowHeader.onmousedown = dragMouseDown
 
       function dragMouseDown (e) {
-        e = e || window.event
         // get the mouse cursor position at startup:
         pos3 = e.clientX
         pos4 = e.clientY
@@ -135,7 +137,6 @@ export default {
       }
 
       function elementDrag (e) {
-        e = e || window.event
         // calculate the new cursor position:
         pos1 = pos3 - e.clientX
         pos2 = pos4 - e.clientY
@@ -403,6 +404,18 @@ export default {
       } else {
         this.isMaxSize = false
       }
+    },
+    addLiseners () {
+      this.dragElement()
+      this.getThisWindowAndHeaderElements().window.addEventListener('mousedown', () => {
+        this.sendWindowToHighest()
+      })
+    },
+    disponse () {
+      this.$emit('clickClose')
+      this.$destroy()
+      this.$el.parentNode.removeChild(this.$el)
+      return false
     }
   },
   computed: {
@@ -489,11 +502,6 @@ export default {
     }
   },
   mounted () {
-    this.dragElement()
-    this.getThisWindowAndHeaderElements().window.addEventListener('mousedown', () => {
-      this.sendWindowToHighest()
-    })
-    this.getThisWindowAndHeaderElements().window.style.zIndex = 9999
   }
 }
 </script>

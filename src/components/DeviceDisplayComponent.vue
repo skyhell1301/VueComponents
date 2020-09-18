@@ -37,7 +37,6 @@ export default {
   display: inline-block;
 }
 .connection_interface {
-  //display: inline-block;
   vertical-align: bottom;
   min-height: 15px;
   position: relative;
