@@ -1,22 +1,17 @@
 <template>
   <div id="app">
     <div ref="container">
-<!--    <div>-->
-<!--      <button style="margin: 10px" id="test" @click="setClose1">Open Window 1</button>-->
-<!--      <button style="margin: 10px" @click="setClose2">Open Window 2</button>-->
-<!--      <button style="margin: 10px" @click="test">{{ valInput }}</button>-->
-<!--    </div>-->
-      <DeviceDisplayComponent class="elem1">
-        <ItemDisplayComponent :parameters-display="parametersInput"></ItemDisplayComponent>
+      <DeviceDisplayComponent title-device="АНТЕННАЯ СИСТЕМА" class="elem1">
+        <AntennSystemComponent :parameters-in="antennaParameters"></AntennSystemComponent>
       </DeviceDisplayComponent>
       <DeviceDisplayComponent class="elem2">
-        <ItemDisplayComponent :parameters-display="parametersInput"></ItemDisplayComponent>
+<!--        <ItemDisplayComponent :parameters-display="parametersInput"></ItemDisplayComponent>-->
       </DeviceDisplayComponent>
       <DeviceDisplayComponent class="elem3">
-        <ItemDisplayComponent :parameters-display="parametersInput"></ItemDisplayComponent>
+<!--        <ItemDisplayComponent :parameters-display="parametersInput"></ItemDisplayComponent>-->
       </DeviceDisplayComponent>
       <DeviceDisplayComponent class="elem4">
-        <ItemDisplayComponent :parameters-display="parametersInput"></ItemDisplayComponent>
+<!--        <ItemDisplayComponent :parameters-display="parametersInput"></ItemDisplayComponent>-->
       </DeviceDisplayComponent>
     </div>
   </div>
@@ -36,20 +31,13 @@ export default {
       close2: false,
       scaleActive: false,
       valInput: 'Hey',
-      parametersInput: [
-        {
-          nameParameter: 'Частота (МГц)',
-          valueParameter: 100
-        },
-        {
-          nameParameter: 'Ослабление, дБ',
-          valueParameter: -3
-        },
-        {
-          nameParameter: 'ВЧ выход',
-          valueParameter: '300'
-        }
-      ]
+      antennaParameters: {
+        antennaSignal: '100 дБ',
+        azimut: '100 град',
+        elevationAngle: '45 град',
+        antennaScanner: 'Вкл',
+        antennaMode: 'Автомат'
+      }
     }
   },
   components: {

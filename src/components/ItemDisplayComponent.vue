@@ -39,6 +39,7 @@ export default {
         let popWin = new Vue(PopUpWindow)
         popWin.$root.active = true
         popWin.$root.title = this.titleDevice
+        // popWin.$root.link = '/devDisp'
         // popWin.$root.isResizable = false
         popWin.$on('clickClose', this.updateWindowStatus)
         popWin.$mount()

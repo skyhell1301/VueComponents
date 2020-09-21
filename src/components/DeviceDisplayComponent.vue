@@ -41,7 +41,8 @@ export default {
   min-height: 15px;
   position: relative;
   text-align: center;
-  margin-left: 6%;
+  margin-left: 5%;
+  margin-right: 5%;
   linear-gradient: rgb(32, 33, 46), rgb(38, 39, 51);
 }
 .connection_interface__svg {
@@ -56,17 +57,20 @@ export default {
 }
 .device_body {
   display: inline-block;
-  padding: 3%;
+  padding: 7px;
   background: linear-gradient(135deg, rgba(235,235,235,1) 0%, rgba(128,128,128,1) 61%, rgba(166,166,166,1) 100%);
   box-shadow: 0px 0px 5px 1px rgba(148,148,148,0.71);
 }
 .device_body__header {
-  margin: 0 15% 3% 15%;
+  //margin: 0 15% 3% 15%;
+  margin-bottom: 5px;
   border: 2px solid rgba(77,83,79,0.75);
   border-radius: 7px;
   background: linear-gradient(to right, rgba(229,249,255,1) 0%, rgba(255,255,255,0.98) 47%, rgba(255,255,255,0.98) 62%, rgba(229,249,255,0.96) 100%);
 }
 .title_device {
+  //margin: 0 15% 3% 15%;
+  white-space: nowrap;
   margin: 2px;
   font-family: "sans-serif";
 }
@@ -74,5 +78,7 @@ export default {
   display: inline-block;
   background: linear-gradient(275deg, rgb(158, 158, 158) 0%, rgb(247, 247, 247) 100%);
   box-shadow: inset 0px 0px 8px -1px rgba(51,51,51,1);
+  min-height: 100px;
+  min-width: 200px;
 }
 </style>

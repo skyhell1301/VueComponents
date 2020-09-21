@@ -51,12 +51,12 @@ export default {
         const one = Math.floor((Math.random() * 1000000) + 1) + ''
         const two = Math.floor((Math.random() * 1000000) + 1) + ''
         const three = Math.floor((Math.random() * 1000000) + 1) + ''
-        return one + two + three
+        return 'id' + one + two + three
       })(),
       widthToString: '',
       heightToString: '',
-      widthWindow: 300,
-      heightWindow: 300,
+      widthWindow: '',
+      heightWindow: '',
       stickSize: 8,
       isCloseRectangleActive: false,
       widthCloseRectangle: '',
@@ -68,15 +68,18 @@ export default {
     }
   },
   props: {
-    active: Boolean,
+    active: {
+      type: Boolean,
+      default: true
+    },
     title: String,
     width: {
       type: Number,
-      default: 350
+      default: 300
     },
     height: {
       type: Number,
-      default: 250
+      default: 300
     },
     minHeight: {
       type: Number,
@@ -106,12 +109,16 @@ export default {
       default: function () {
         return ['tl', 'tm', 'tr', 'mr', 'br', 'bm', 'bl', 'ml']
       }
+    },
+    link: {
+      type: String
     }
   },
   methods: {
     getThisWindowAndHeaderElements () {
       return {
-        window: window.document.getElementById(this.windowId),
+        // window: window.document.getElementById(this.windowId),
+        window: this.$el,
         windowHeader: window.document.getElementById(this.windowId + '-' + 'header'),
         rectangle: window.document.getElementById(this.windowId + '-' + 'rectangle')
       }
@@ -337,6 +344,7 @@ export default {
       }
     },
     setSizeWindow () {
+      if (!this.isResizable) return
       if (this.isMaxSize) {
         this.setMinSizeWindow()
       } else {
@@ -404,6 +412,11 @@ export default {
       } else {
         this.isMaxSize = false
       }
+    },
+    updateSizeWindow () {
+      this.getThisWindowAndHeaderElements().window.style.height = this.heightWindow + 'px'
+      this.getThisWindowAndHeaderElements().window.style.width = this.widthWindow + 'px'
+      this.updateSizeStatus()
     },
     addLiseners () {
       this.dragElement()
@@ -488,8 +501,6 @@ export default {
     }
   },
   created: function () {
-    this.widthWindow = this.width
-    this.heightWindow = this.height
     if (this.maxHeight === 0) {
       this.maxHeightWindow = window.screen.height - this.space
     } else {
@@ -502,53 +513,61 @@ export default {
     }
   },
   mounted () {
+    if (this.width >= this.minWidth) {
+      this.widthWindow = this.width
+    }
+    if (this.height >= this.minHeight) {
+      this.heightWindow = this.height
+    }
+    this.$el.style.height = this.heightWindow
+    this.$el.style.width = this.widthWindow
+    this.centerWindow()
   }
 }
 </script>
 <style>
 .vue-window-modal {
-  //overflow: hidden;
+  //width: 300px;
+  //height: 300px;
   position: absolute;
   border-radius: 5px;
   background-color: #f7f7f7;
   box-shadow: 7px 7px 50px 5px rgba(0, 0, 0, 0.13);
   border: 1px solid #8080802b;
-  display: none;
 }
 
 .vue-window-modal .vue-window-modal-header {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   background-color: rgba(144,144,143,0.41);
-  padding: 8px 0px;
+  padding-top: 5px;
   margin: 0 auto;
   color: white;
-  height: 20px;
   font-size: 16px;
   cursor: pointer;
   user-select: none;
   font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .vue-window-modal .vue-window-modal-header h2 {
-  display: inline-block;
-  position: relative;
-  top: -23px;
+  flex-grow: 30;
+  margin: 0 0 0 10%;
 }
+
 .buttons-box {
-  width: 70px;
-  height: 35px;
-  position: absolute;
+  flex-grow: 1;
+  margin-bottom: 5px;
+  margin-right: 5px;
   display: flex;
   justify-content: space-evenly;
-  top: 0px;
-  right: 0px;
 }
 
 .vue-window-modal .vue-window-modal-header .button-container {
   height: 25px;
   width: 25px;
-  margin-top: 7%;
   cursor: pointer;
   transition: 0.3s;
 }

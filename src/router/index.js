@@ -1,16 +1,23 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 
 // Components
+import PopUpWindow from '../components/PopUpWindow'
+import DeviceDisplayComponent from '../components/DeviceDisplayComponent'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
-  // routes: [
-  //   {
-  //     path: '/',
-  //     name: 'PopUpWindow',
-  //     component: PopUpWindow
-  //   }
-  // ]
+export default new VueRouter({
+  routes: [
+    {
+      path: '/popWin',
+      name: 'PopUpWindow',
+      component: PopUpWindow
+    },
+    {
+      path: '/devDisp',
+      name: 'DeviceDisplayComponent',
+      component: DeviceDisplayComponent
+    }
+  ]
 })
