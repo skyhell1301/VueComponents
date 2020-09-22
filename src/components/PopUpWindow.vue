@@ -527,13 +527,12 @@ export default {
 </script>
 <style>
 .vue-window-modal {
-  //width: 300px;
-  //height: 300px;
   position: absolute;
   border-radius: 5px;
   background-color: #f7f7f7;
   box-shadow: 7px 7px 50px 5px rgba(0, 0, 0, 0.13);
   border: 1px solid #8080802b;
+  transition: width .1s, height .1s;
 }
 
 .vue-window-modal .vue-window-modal-header {

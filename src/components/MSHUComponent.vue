@@ -1,6 +1,6 @@
 <template>
-  <div class="wrapper_antenna-system" @dblclick="openWindow">
-    <table :id="'tableAntennaParameters' + ID" class="table_parameters">
+  <div class="wrapper_MSHU" @dblclick="openWindow">
+    <table :id="'tableMSHUparameters' + ID" class="table_MSHU-parameters">
       <tr v-for="param in parametersDisplay"
           :key="param.id"
       >
@@ -14,10 +14,9 @@
 <script>
 import Vue from 'vue'
 import PopUpWindow from './PopUpWindow'
-// import DeviceDisplayComponent from './DeviceDisplayComponent'
 
 export default {
-  name: 'AntennSystemComponent',
+  name: this.titleDevice,
   data () {
     return {
       ID: (function () {
@@ -26,28 +25,23 @@ export default {
         const three = Math.floor((Math.random() * 1000000) + 1) + ''
         return 'id' + one + two + three
       })(),
-      titleDevice: 'АНТЕННАЯ СИСТЕМА',
       isOpenWindow: false,
       parametersDisplay: [
         {
-          nameParameter: 'Сигнал',
-          valueParameter: this.parametersIn.antennaSignal
+          nameParameter: 'Значение тока (мА)',
+          valueParameter: this.parametersIn.currentValue
         },
         {
-          nameParameter: 'Азимут',
-          valueParameter: this.parametersIn.azimut
+          nameParameter: 'Пределы тока (мА)',
+          valueParameter: this.parametersIn.currentLimits
         },
         {
-          nameParameter: 'Угол мета',
-          valueParameter: this.parametersIn.elevationAngle
+          nameParameter: 'Напряжение А (В)',
+          valueParameter: this.parametersIn.voltageA
         },
         {
-          nameParameter: 'Сканер',
-          valueParameter: this.parametersIn.antennaScanner
-        },
-        {
-          nameParameter: 'Режим',
-          valueParameter: this.parametersIn.antennaMode
+          nameParameter: 'Напряжение В (В)',
+          valueParameter: this.parametersIn.voltageB
         }
       ]
     }
@@ -55,6 +49,10 @@ export default {
   props: {
     parametersIn: {
       type: Object
+    },
+    titleDevice: {
+      type: String,
+      default: 'МШУ'
     }
   },
   methods: {
@@ -65,7 +63,7 @@ export default {
         popWin.$root.title = this.titleDevice
         popWin.$on('clickClose', this.updateWindowStatus)
         popWin.$mount()
-        let b = document.getElementById('tableAntennaParameters' + this.ID).cloneNode(true)
+        let b = document.getElementById('tableMSHUparameters' + this.ID).cloneNode(true)
         popWin.$el.appendChild(b)
         document.getElementById('app').appendChild(popWin.$el)
         this.updateWindowStatus()
@@ -79,17 +77,14 @@ export default {
 </script>
 
 <style scoped>
-.wrapper_antenna-system {
+.wrapper_MSHU {
 }
-
-.table_parameters {
+.table_MSHU-parameters {
   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
   text-align: left;
   white-space: nowrap;
   width: 100%;
-  min-width: 200px;
 }
-
 .param-td {
   padding: 3%;
 }
