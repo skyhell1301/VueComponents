@@ -1,24 +1,25 @@
 <template>
   <div id="app">
-    <svg version="1.1"
-         baseProfile="full"
-         width="100%" height="100%"
-         xmlns="http://www.w3.org/2000/svg"
-         style="position: absolute; top: 0px; left: 0px"
-    >
+<!--    <svg version="1.1"-->
+<!--         baseProfile="full"-->
+<!--         width="100%" height="100%"-->
+<!--         xmlns="http://www.w3.org/2000/svg"-->
+<!--         style="position: absolute; top: 0px; left: 0px"-->
+<!--    >-->
 
-      <rect width="100%" height="100%" fill="red" />
+<!--      <rect width="100%" height="100%" fill="red" />-->
 
-      <circle cx="50%" cy="50%" r="50%" fill="green" />
+<!--      <circle cx="50%" cy="50%" r="50%" fill="green" />-->
 
-      <text x="150" y="125" font-size="60" text-anchor="middle" fill="white">SVG</text>
-      <line :x1="x1" :x2="x2" :y1="y1" :y2="y2" stroke="orange" stroke-width="15px"/>
-    </svg>
+<!--      <text x="150" y="125" font-size="60" text-anchor="middle" fill="white">SVG</text>-->
+<!--      <line :x1="x1" :x2="x2" :y1="y1" :y2="y2" stroke="orange" stroke-width="15px"/>-->
+<!--    </svg>-->
     <div class="device-container">
+      <connection-line-component id_1="10" connection-point_1="bl" id_2="8" connection-point_2="rt"></connection-line-component>
       <DeviceDisplayComponent id="7" title-device="АНТЕННАЯ СИСТЕМА" class="elem1">
         <AntennSystemComponent :parameters-in="antennaParameters"></AntennSystemComponent>
       </DeviceDisplayComponent>
-      <DeviceDisplayComponent title-device="ТЕСТ-ТРАНСЛЯТОР" class="elem2">
+      <DeviceDisplayComponent id="10" title-device="ТЕСТ-ТРАНСЛЯТОР" class="elem2">
         <TestTranslyatorComponent :parameters-in="testTraslyatorParameters"></TestTranslyatorComponent>
       </DeviceDisplayComponent>
       <DeviceDisplayComponent title-device="УМ #1" class="elem3">
@@ -27,7 +28,7 @@
       <DeviceDisplayComponent id="8" title-device="УМ #2" class="elem4">
         <AmplifierComponent title-device="УМ #2" :parameters-in="amplifier2Parameters"></AmplifierComponent>
       </DeviceDisplayComponent>
-      <DeviceDisplayComponent title-device="МШУ #1" class="elem5">
+      <DeviceDisplayComponent id="9" title-device="МШУ #1" class="elem5">
         <MSHUComponent title-device="МШУ #1" :parameters-in="MSHU1Parameters"></MSHUComponent>
       </DeviceDisplayComponent>
       <DeviceDisplayComponent title-device="МШУ #2" class="elem6">
@@ -60,6 +61,7 @@ import AmplifierComponent from './components/AmplifierComponent'
 import MSHUComponent from './components/MSHUComponent'
 import UpConverterComponent from './components/UpConverterComponent'
 import DownConverterComponent from './components/DownConverterComponent'
+import ConnectionLineComponent from './components/ConnectionLineComponent'
 
 export default {
   name: 'App',
@@ -138,27 +140,28 @@ export default {
     AmplifierComponent,
     MSHUComponent,
     UpConverterComponent,
-    DownConverterComponent
+    DownConverterComponent,
+    ConnectionLineComponent
   },
   methods: {
     testMet () {
+      console.log('hey')
       let a = document.getElementById('7')
       a.style.top = '5%'
     },
     upt () {
-      console.log(document.getElementById('7').getBoundingClientRect().x)
     }
   },
   mounted () {
-    let a = document.getElementById('7').getBoundingClientRect()
-    let b = document.getElementById('8').getBoundingClientRect()
-    console.log(a)
-    this.x1 = a.x + (a.width / 2)
-    this.y1 = a.y + (a.height)
-    this.x2 = b.x + (a.width / 2)
-    this.y2 = b.y
-    console.log(b)
-    document.addEventListener('mousemove', this.upt)
+    // let a = document.getElementById('7').getBoundingClientRect()
+    // let b = document.getElementById('8').getBoundingClientRect()
+    // console.log(a)
+    // this.x1 = a.x + (a.width / 2)
+    // this.y1 = a.y + (a.height)
+    // this.x2 = b.x + (a.width / 2)
+    // this.y2 = b.y
+    // console.log(b)
+    // document.addEventListener('mousemove', this.upt)
   }
 }
 </script>
@@ -170,60 +173,61 @@ export default {
   color: #2c3e50;
 }
 .device-container {
-  //transform: scale(1);
-  display: flex;
-  align-items: stretch;
+  display: inline-flex;
+  display: grid;
+  grid-template-rows: 25% 25% 25% 25%;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 3vw;
   width: 1000px;
   height: 1000px;
 }
 .elem1 {
-  position: absolute;
-  left:10%;
-  top: 10%;
+  //justify-self: center;
+  //align-self: center;
 }
 .elem2 {
-  position: absolute;
-  left:30%;
-  top: 10%;
+  //position: absolute;
+  //left:30%;
+  //top: 10%;
 }
 .elem3 {
-  position: absolute;
-  left:10%;
-  top: 40%;
+  //position: absolute;
+  //left:10%;
+  //top: 40%;
 }
 .elem4 {
-  position: absolute;
-  left:30%;
-  top: 40%;
+  //position: absolute;
+  //left:30%;
+  //top: 40%;
 }
 .elem5 {
-  position: absolute;
-  left:50%;
-  top: 10%;
+  //position: absolute;
+  //left:50%;
+  //top: 10%;
 }
 .elem6 {
-  position: absolute;
-  left:50%;
-  top: 40%;
+  //position: absolute;
+  //left:50%;
+  //top: 40%;
 }
 .elem7 {
-  position: absolute;
-  left:70%;
-  top: 10%;
+  //position: absolute;
+  //left:70%;
+  //top: 10%;
 }
 .elem8 {
-  position: absolute;
-  left:70%;
-  top: 40%;
+  //position: absolute;
+  //left:70%;
+  //top: 40%;
 }
 .elem9 {
-  position: absolute;
-  left:10%;
-  top: 60%;
+  //position: absolute;
+  //left:10%;
+  //top: 60%;
 }
 .elem10 {
-  position: absolute;
-  left:30%;
-  top: 60%;
+  //position: absolute;
+  //left:30%;
+  //top: 60%;
 }
 </style>

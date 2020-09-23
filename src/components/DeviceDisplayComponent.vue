@@ -11,7 +11,7 @@
     </div>
     <div class="device_body">
       <div class="device_body__header">
-        <div class="title_device">{{titleDevice}}</div>
+        <div class="title_device" :style="'font-size: ' + fz + 'px'">{{titleDevice}}</div>
       </div>
       <div class="device_display">
         <slot></slot>
@@ -23,18 +23,46 @@
 <script>
 export default {
   name: 'DeviceDisplayComponent',
+  data () {
+    return {
+      fz: 16,
+      heightBody: ''
+    }
+  },
   props: {
     titleDevice: {
       type: String,
       default: 'TITLE'
     }
+  },
+  methods: {
+    reFontSize () {
+      this.heightBody = this.$el.getElementsByClassName('device_body__header').item(0).getBoundingClientRect().height
+    }
+  },
+  mounted () {
+    this.heightBody = this.$el.getElementsByClassName('device_body__header').item(0).getBoundingClientRect().height
+    this.$el.addEventListener('fullscreenchange', this.reFontSize)
+  },
+  watch: {
+    heightBody () {
+      this.fz = this.heightBody * 0.7
+      console.log(this.fz)
+    }
+  },
+  updated () {
+    console.log('hey')
+  },
+  beforeUpdate () {
+    this.reFontSize()
   }
 }
 </script>
 
 <style scoped>
 .wrapper_device-display-component {
-  display: inline-block;
+  display: grid;
+  grid-template-rows: 10% 90%;
 }
 .connection_interface {
   vertical-align: bottom;
@@ -56,33 +84,37 @@ export default {
   fill: url(#my-cool-gradient);
 }
 .device_body {
-  display: inline-block;
+  display: grid;
+  grid-template-rows: 15% 85%;
+  grid-template-columns: 1fr;
   padding: 7px;
   background: linear-gradient(135deg, rgba(235,235,235,1) 0%, rgba(128,128,128,1) 61%, rgba(166,166,166,1) 100%);
   box-shadow: 0px 0px 5px 1px rgba(148,148,148,0.71);
 }
 .device_body__header {
-  text-align: center;
+  display: grid;
   margin-bottom: 5px;
   margin-right: 10%;
   margin-left: 10%;
-  padding: 2px;
+  //width: 70%;
+  align-items: center;
+  justify-items: center;
   border: 2px solid rgba(77,83,79,0.75);
   border-radius: 7px;
   background: linear-gradient(to right, rgba(229,249,255,1) 0%, rgba(255,255,255,0.98) 47%, rgba(255,255,255,0.98) 62%, rgba(229,249,255,0.96) 100%);
 }
 .title_device {
   white-space: nowrap;
-  font-size: 0.9em;
+  //font-size: 10%;
   font-weight: bold;
   font-stretch: semi-condensed;
   font-family: "sans-serif";
 }
 .device_display {
-  display: inline-block;
+  //display: grid;
   background: linear-gradient(275deg, rgb(158, 158, 158) 0%, rgb(247, 247, 247) 100%);
   box-shadow: inset 0px 0px 8px -1px rgba(51,51,51,1);
-  min-height: 50px;
-  min-width: 250px;
+  //min-height: 50px;
+  //min-width: 250px;
 }
 </style>

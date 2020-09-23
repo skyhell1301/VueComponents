@@ -87,7 +87,8 @@ export default {
   text-align: left;
   white-space: nowrap;
   width: 100%;
-  min-width: 200px;
+  height: 100%;
+  //min-width: 200px;
 }
 
 .param-td {
