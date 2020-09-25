@@ -1,23 +1,23 @@
 <template>
-  <div class="wrapper_antenna-system" @dblclick="openWindow">
-    <table :id="'tableAntennaParameters' + ID" class="table_parameters">
-      <tr v-for="param in parametersDisplay"
-          :key="param.id"
-      >
-        <td class="param-td">{{ param.nameParameter }}</td>
-        <td class="value-td">{{ param.valueParameter }}</td>
-      </tr>
-    </table>
+  <div class="wrapper_antenna-system" @dblclick="openWindow"
+        :style="'font-size: ' + fz + 'px'"
+       :id="'AntennaParameters' + ID"
+  >
+    <div class="table_parameters"
+         v-for="param in parametersDisplay"
+         :key="param.id">
+        <div class="param-td">{{ param.nameParameter }}</div>
+        <div class="value-td">{{ param.valueParameter }}</div>
+    </div>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import PopUpWindow from './PopUpWindow'
-// import DeviceDisplayComponent from './DeviceDisplayComponent'
 
 export default {
-  name: 'AntennSystemComponent',
+  name: 'AntennaSystemComponent',
   data () {
     return {
       ID: (function () {
@@ -28,6 +28,7 @@ export default {
       })(),
       titleDevice: 'АНТЕННАЯ СИСТЕМА',
       isOpenWindow: false,
+      fz: '',
       parametersDisplay: [
         {
           nameParameter: 'Сигнал',
@@ -65,37 +66,51 @@ export default {
         popWin.$root.title = this.titleDevice
         popWin.$on('clickClose', this.updateWindowStatus)
         popWin.$mount()
-        let b = document.getElementById('tableAntennaParameters' + this.ID).cloneNode(true)
-        popWin.$el.appendChild(b)
+        let b = document.getElementById('AntennaParameters' + this.ID).cloneNode(true)
+        popWin.$el.getElementsByClassName('content-clot').item(0).append(b)
         document.getElementById('app').appendChild(popWin.$el)
         this.updateWindowStatus()
       }
     },
+    reFontSize () {
+      this.fz = this.$el.getBoundingClientRect().height * 0.09
+    },
     updateWindowStatus () {
       this.isOpenWindow = !this.isOpenWindow
     }
+  },
+  mounted () {
+    this.reFontSize()
+    window.addEventListener('resize', this.reFontSize)
   }
 }
 </script>
 
 <style scoped>
 .wrapper_antenna-system {
+  display: grid;
+  width: 100%;
+  height: 100%;
 }
 
 .table_parameters {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 50% 50%;
   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
   text-align: left;
+  align-items: center;
   white-space: nowrap;
   width: 100%;
   height: 100%;
 }
 
 .param-td {
-  padding: 3%;
+  margin-left: 10%;
 }
 
 .value-td {
-  padding: 3%;
+  margin-right: 10%;
   text-align: right;
 }
 </style>

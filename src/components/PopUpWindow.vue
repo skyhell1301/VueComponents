@@ -12,8 +12,10 @@
         <div class="button-container close-btn"  @click="disponse"></div>
       </div>
     </div>
-    <slot>
-    </slot>
+    <div class="content-clot">
+      <slot>
+      </slot>
+    </div>
     <div
       v-for="stick in sticks"
       class="vdr-stick"
@@ -533,14 +535,14 @@ export default {
   box-shadow: 7px 7px 50px 5px rgba(0, 0, 0, 0.13);
   border: 1px solid #8080802b;
   transition: width .1s, height .1s;
+  display: grid;
+  grid-template-rows: 1fr 30fr;
 }
 
 .vue-window-modal .vue-window-modal-header {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   background-color: rgba(144,144,143,0.41);
-  padding-top: 5px;
-  margin: 0 auto;
   color: white;
   font-size: 16px;
   cursor: pointer;
@@ -549,6 +551,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .vue-window-modal .vue-window-modal-header h2 {
@@ -592,7 +595,10 @@ export default {
   background: none;
   border: none;
 }
-
+.content-clot {
+  height: 1fr;
+  //grid-template-columns: 12;
+}
 .inactive .vdr-stick {
   display: none;
 }
