@@ -6,10 +6,9 @@ import router from './router'
 
 import VAnimateCss from 'animate.css/animate.css'
 import PopUpWindow from './components/PopUpWindow'
-import antSys from './components/AntennSystemComponent.vue'
 
 Vue.config.productionTip = false
-Vue.use(VAnimateCss, PopUpWindow, antSys)
+Vue.use(VAnimateCss, PopUpWindow)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

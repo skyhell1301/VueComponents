@@ -11,8 +11,8 @@
     </div>
     <div class="device_body">
       <div class="device_body__header">
-        <div class="title_device" :style="'font-size: ' + fz + 'px'">{{titleDevice}}</div>
       </div>
+      <div class="title_device" :style="'font-size: ' + fz + 'px'">{{titleDevice}}</div>
       <div class="device_display">
         <slot></slot>
       </div>
@@ -26,7 +26,8 @@ export default {
   name: 'DeviceDisplayComponent',
   data () {
     return {
-      fz: 10
+      fz: this.fontSizeTitle,
+      resizeCoefficient: ''
     }
   },
   props: {
@@ -37,26 +38,46 @@ export default {
     connectionInterfaceActive: {
       type: Boolean,
       default: true
+    },
+    fontSizeTitle: {
+      type: Number,
+      default: 12
+    },
+    isReFontSize: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {
     reFontSize: function () {
+      this.fz = this.$el.getElementsByClassName('device_body__header').item(0).getBoundingClientRect().height * 0.8
+    },
+    reFontSizeInWidth: function () {
       const WCurrentText = this.$el.getElementsByClassName('title_device').item(0).getBoundingClientRect().width
       const HCurrentContainer = this.$el.getElementsByClassName('device_body__header').item(0).getBoundingClientRect().height
-      // const HCurrentText = this.$el.getElementsByClassName('title_device').item(0).getBoundingClientRect().height
-      let Wtext = this.$el.getElementsByClassName('device_body__header').item(0).getBoundingClientRect().width * 0.9
-      // let Htext = this.$el.getElementsByClassName('device_body__header').item(0).getBoundingClientRect().height * 0.9
-      if (Math.abs(Wtext - WCurrentText) > WCurrentText * 0.05) {
+      let Wtext = this.$el.getElementsByClassName('device_body__header').item(0).getBoundingClientRect().width * this.resizeCoefficient
+      if (Math.abs(Wtext - WCurrentText) > WCurrentText * 0.1) {
         this.fz = Wtext > WCurrentText ? this.fz + HCurrentContainer * 0.05 : this.fz - HCurrentContainer * 0.05
-        if (this.fz > 14) {
-          setTimeout(this.reFontSize, 5)
-        }
+        setTimeout(this.reFontSizeInWidth, 5)
       }
     }
   },
   mounted () {
-    this.reFontSize()
-    window.addEventListener('resize', this.reFontSize)
+    // const WCurrentText = this.$el.getElementsByClassName('title_device').item(0).getBoundingClientRect().width
+    // const WCurrentContainer = this.$el.getElementsByClassName('device_body__header').item(0).getBoundingClientRect().width
+    // if (WCurrentText / WCurrentContainer > 0.8) {
+    //   this.resizeCoefficient = 0.8
+    //   window.addEventListener('resize', this.reFontSizeInWidth)
+    //   this.reFontSizeInWidth()
+    // } else {
+    //   this.resizeCoefficient = WCurrentText / WCurrentContainer
+    //   window.addEventListener('resize', this.reFontSize)
+    //   this.reFontSize()
+    // }
+    if (this.isReFontSize) {
+      this.reFontSize()
+      window.addEventListener('resize', this.reFontSize)
+    }
   },
   watch: {
   },
@@ -64,6 +85,7 @@ export default {
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.reFontSize)
+    window.removeEventListener('resize', this.reFontSizeInWidth)
   }
 }
 </script>
@@ -99,14 +121,14 @@ export default {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-rows: 1fr 9fr;
+  grid-template-rows: 13% 87%;
   background: linear-gradient(135deg, rgba(235,235,235,1) 0%, rgba(128,128,128,1) 61%, rgba(166,166,166,1) 100%);
   box-shadow: 0px 0px 5px 1px rgba(148,148,148,0.71);
 }
 .device_body__header {
   grid-row: 1;
   grid-column: 1;
-  //height: 65%;
+  height: 65%;
   width: 75%;
   display: grid;
   align-self: center;

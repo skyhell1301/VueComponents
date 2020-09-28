@@ -1,13 +1,13 @@
 <template>
-  <div class="wrapper_antenna-system" @dblclick="openWindow"
-        :style="'font-size: ' + fz + 'px'"
-       :id="'AntennaParameters' + ID"
+  <div class="wrapper_parameters" @dblclick="openWindow"
+       :style="'font-size: ' + fz + 'px'"
+       :id="'Parameters-' + ID"
   >
     <div class="table_parameters"
-         v-for="param in parametersDisplay"
+         v-for="param in deviceData.deviceParameters"
          :key="param.id">
-        <div class="param-td">{{ param.nameParameter }}</div>
-        <div class="value-td">{{ param.valueParameter }}</div>
+      <div class="param">{{ param.nameParameter }}</div>
+      <div class="value">{{ param.valueParameter }}</div>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ import Vue from 'vue'
 import PopUpWindow from './PopUpWindow'
 
 export default {
-  name: 'AntennaSystemComponent',
+  name: 'DisplayParametersComponent',
   data () {
     return {
       ID: (function () {
@@ -26,36 +26,18 @@ export default {
         const three = Math.floor((Math.random() * 1000000) + 1) + ''
         return 'id' + one + two + three
       })(),
-      titleDevice: 'АНТЕННАЯ СИСТЕМА',
+      titleDevice: this.deviceData.title,
       isOpenWindow: false,
-      fz: '',
-      parametersDisplay: [
-        {
-          nameParameter: 'Сигнал',
-          valueParameter: this.parametersIn.antennaSignal
-        },
-        {
-          nameParameter: 'Азимут',
-          valueParameter: this.parametersIn.azimut
-        },
-        {
-          nameParameter: 'Угол мета',
-          valueParameter: this.parametersIn.elevationAngle
-        },
-        {
-          nameParameter: 'Сканер',
-          valueParameter: this.parametersIn.antennaScanner
-        },
-        {
-          nameParameter: 'Режим',
-          valueParameter: this.parametersIn.antennaMode
-        }
-      ]
+      fz: ''
     }
   },
   props: {
-    parametersIn: {
+    deviceData: {
       type: Object
+    },
+    fontSizeCoefficient: {
+      type: Number,
+      default: 0.09
     }
   },
   methods: {
@@ -66,14 +48,14 @@ export default {
         popWin.$root.title = this.titleDevice
         popWin.$on('clickClose', this.updateWindowStatus)
         popWin.$mount()
-        let b = document.getElementById('AntennaParameters' + this.ID).cloneNode(true)
-        popWin.$el.getElementsByClassName('content-clot').item(0).append(b)
+        let content = document.getElementById('Parameters-' + this.ID).cloneNode(true)
+        popWin.$el.getElementsByClassName('content-clot').item(0).append(content)
         document.getElementById('app').appendChild(popWin.$el)
         this.updateWindowStatus()
       }
     },
     reFontSize () {
-      this.fz = this.$el.getBoundingClientRect().height * 0.09
+      this.fz = this.$el.getBoundingClientRect().height * this.fontSizeCoefficient
     },
     updateWindowStatus () {
       this.isOpenWindow = !this.isOpenWindow
@@ -87,7 +69,7 @@ export default {
 </script>
 
 <style scoped>
-.wrapper_antenna-system {
+.wrapper_parameters {
   display: grid;
   width: 100%;
   height: 100%;
@@ -105,11 +87,11 @@ export default {
   height: 100%;
 }
 
-.param-td {
+.param {
   margin-left: 10%;
 }
 
-.value-td {
+.value {
   margin-right: 10%;
   text-align: right;
 }
