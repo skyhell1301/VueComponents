@@ -504,12 +504,12 @@ export default {
   },
   created: function () {
     if (this.maxHeight === 0) {
-      this.maxHeightWindow = window.screen.height - this.space
+      this.maxHeightWindow = window.screen.height
     } else {
       this.maxHeightWindow = this.maxHeight
     }
     if (this.maxWidth === 0) {
-      this.maxWidthWindow = window.screen.width - this.space
+      this.maxWidthWindow = window.screen.width
     } else {
       this.maxWidthWindow = this.maxWidth
     }

@@ -5,10 +5,9 @@ import App from './App'
 import router from './router'
 
 import VAnimateCss from 'animate.css/animate.css'
-import PopUpWindow from './components/PopUpWindow'
 
 Vue.config.productionTip = false
-Vue.use(VAnimateCss, PopUpWindow)
+Vue.use(VAnimateCss)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

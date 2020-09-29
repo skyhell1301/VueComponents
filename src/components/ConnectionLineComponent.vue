@@ -1,15 +1,5 @@
 <template>
-  <svg
-    baseProfile="full"
-    :width="widthSVG"
-    :height="heightSVG"
-    :style="'top: ' + topSVG + 'px; left: ' + leftSVG + 'px'"
-    style="position: absolute; z-index: 0"
-    shape-rendering="geometricPrecision"
-  >
-    <path :d="pathForLine" stroke="black" stroke-width="3px"/>
-<!--    <line :x1="x1" :x2="x2" :y1="y1" :y2="y2" stroke="orange" stroke-width="10px"/>-->
-  </svg>
+  <path :d="pathForLine" stroke="black" stroke-width="3px"/>
 </template>
 
 <script>
@@ -65,21 +55,18 @@ export default {
   watch: {
   },
   methods: {
-    updateLine () {
-      let coordinate1 = this.calcСoordinates(this.object_1, this.connectionPoint_1)
-      let coordinate2 = this.calcСoordinates(this.object_2, this.connectionPoint_2)
-      this.widthSVG = Math.abs(coordinate1.x - coordinate2.x)
-      this.heightSVG = Math.abs(coordinate1.y - coordinate2.y)
-      this.leftSVG = coordinate1.x > coordinate2.x ? coordinate2.x : coordinate1.x
-      this.topSVG = coordinate1.y > coordinate2.y ? coordinate2.y : coordinate1.y
-      this.x1 = coordinate1.x > coordinate2.x ? this.widthSVG : 0
-      this.y1 = coordinate1.y > coordinate2.y ? this.heightSVG : 0
-      this.x2 = coordinate2.x > coordinate1.x ? this.widthSVG : 0
-      this.y2 = coordinate2.y > coordinate1.y ? this.heightSVG : 0
-      this.createPathLine()
+    updateLine: function () {
+      let coordinate1 = this.calculateCoordinates(this.object_1, this.connectionPoint_1)
+      let coordinate2 = this.calculateCoordinates(this.object_2, this.connectionPoint_2)
+      let xSvg = document.getElementById('line-container-id').getBoundingClientRect().x
+      let ySvg = document.getElementById('line-container-id').getBoundingClientRect().y
+      this.x1 = coordinate1.x - xSvg
+      this.y1 = coordinate1.y - ySvg
+      this.x2 = coordinate2.x - xSvg
+      this.y2 = coordinate2.y - ySvg
       this.pathForLine = 'M' + this.x1 + ' ' + this.y1 + ' L ' + this.x2 + ' ' + this.y2
     },
-    calcСoordinates (obj, point) {
+    calculateCoordinates (obj, point) {
       let x = obj.getBoundingClientRect().x
       let y = obj.getBoundingClientRect().y
       let widthObj = obj.getBoundingClientRect().width
