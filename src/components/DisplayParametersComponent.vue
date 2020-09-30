@@ -1,6 +1,5 @@
 <template>
   <div class="wrapper_parameters" @dblclick="openWindow"
-       :style="'font-size: ' + fz + 'px'"
        :id="'Parameters-' + ID"
   >
     <div class="table_parameters"
@@ -28,7 +27,7 @@ export default {
       })(),
       titleDevice: this.deviceData.title,
       isOpenWindow: false,
-      fz: ''
+      fz: 14
     }
   },
   props: {
@@ -53,6 +52,7 @@ export default {
         document.getElementById('app').appendChild(popWin.$el)
         this.updateWindowStatus()
       }
+      console.log(this.deviceData)
     },
     reFontSize () {
       this.fz = this.$el.getBoundingClientRect().height * this.fontSizeCoefficient
@@ -63,12 +63,32 @@ export default {
   },
   mounted () {
     this.reFontSize()
-    window.addEventListener('resize', this.reFontSize)
+    // window.addEventListener('resize', this.reFontSize)
   }
 }
 </script>
 
 <style scoped>
+@media (max-width: 1920px) {
+  .wrapper_parameters {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1680px) {
+  .wrapper_parameters {
+    font-size: 12px;
+  }
+}
+@media (max-width: 1330px) {
+  .wrapper_parameters {
+    font-size: 10px;
+  }
+}
+@media (max-width: 1080px) {
+  .wrapper_parameters {
+    font-size: 9px;
+  }
+}
 .wrapper_parameters {
   display: grid;
   width: 100%;

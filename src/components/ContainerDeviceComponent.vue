@@ -1,11 +1,13 @@
 <template>
   <div class="device-container">
-    <svg id="line-container-id" class="line-container" height="100%" width="100%">
+    <svg id="line-container-id" class="line-container" height="100%" width="100%" fill="grid-pattern">
       <connection-line-component style="z-index: -10"
                                  id_1="7"
-                                 :connection-point_1="{side: 'left', percent: 44}"
+                                 :connection-point_1="{side: 'left', percent: 50}"
                                  id_2="9"
-                                 :connection-point_2="{side: 'right', percent: 90}">
+                                 :connection-point_2="{side: 'left', percent: 50}"
+                                 :point-edges-array="lineData"
+      >
       </connection-line-component>
     </svg>
     <DeviceDisplayComponent id="7" title-device="АНТЕННАЯ СИСТЕМА" class="antenna-system-device">
@@ -51,6 +53,7 @@ export default {
   name: 'ContainerDeviceComponent',
   data () {
     return {
+      inputValue: '',
       antennaDeviceData: {
         deviceParameters: [
           {
@@ -75,6 +78,24 @@ export default {
           }],
         title: 'АНТЕННАЯ СИСТЕМА'
       },
+      lineData: [
+        {
+          direction: 'left',
+          value: 5
+        },
+        {
+          direction: 'down',
+          value: 55
+        },
+        {
+          direction: 'left',
+          value: 100
+        },
+        {
+          direction: 'down',
+          value: 45
+        }
+      ],
       testTranslyatorDeviceData: {
         deviceParameters: [
           {
@@ -240,6 +261,56 @@ export default {
   methods: {
   },
   mounted () {
+    let context = this
+    // Create a new WebSocket.
+    let socket = new WebSocket('ws://10.10.0.16:8080')
+
+    // Define the
+    // let message = document.getElementById('message')
+    //
+    // function transmitMessage() {
+    //   socket.send(message.value)
+    // }
+
+    socket.onmessage = function (e) {
+      let text = JSON.parse(e.data)
+      if (text.DeviceParameters !== null && text.DeviceParameters !== undefined) {
+        context.inputValue = text.DeviceParameters
+        if (context.inputValue.antennaDeviceData !== null && context.inputValue.antennaDeviceData !== undefined) {
+          context.antennaDeviceData = context.inputValue.antennaDeviceData
+        }
+        if (context.inputValue.testTranslyatorDeviceData !== null && context.inputValue.testTranslyatorDeviceData !== undefined) {
+          context.testTranslyatorDeviceData = context.inputValue.testTranslyatorDeviceData
+        }
+        if (context.inputValue.amplifier1DeviceData1 !== null && context.inputValue.amplifier1DeviceData1 !== undefined) {
+          context.amplifier1DeviceData1 = context.inputValue.amplifier1DeviceData1
+        }
+        if (context.inputValue.amplifier1DeviceData2 !== null && context.inputValue.amplifier1DeviceData2 !== undefined) {
+          context.amplifier1DeviceData2 = context.inputValue.amplifier1DeviceData2
+        }
+        if (context.inputValue.MSHUDeviceData1 !== null && context.inputValue.MSHUDeviceData1 !== undefined) {
+          context.MSHUDeviceData1 = context.inputValue.MSHUDeviceData1
+        }
+        if (context.inputValue.MSHUDeviceData2 !== null && context.inputValue.MSHUDeviceData2 !== undefined) {
+          context.MSHUDeviceData2 = context.inputValue.MSHUDeviceData2
+        }
+        if (context.inputValue.upConverterDeviceData1 !== null && context.inputValue.upConverterDeviceData1 !== undefined) {
+          context.upConverterDeviceData1 = context.inputValue.upConverterDeviceData1
+        }
+        if (context.inputValue.upConverterDeviceData2 !== null && context.inputValue.upConverterDeviceData2 !== undefined) {
+          context.upConverterDeviceData2 = context.inputValue.upConverterDeviceData2
+        }
+        if (context.inputValue.downConverterDeviceData1 !== null && context.inputValue.downConverterDeviceData1 !== undefined) {
+          context.downConverterDeviceData1 = context.inputValue.downConverterDeviceData1
+        }
+        if (context.inputValue.downConverterDeviceData2 !== null && context.inputValue.downConverterDeviceData2 !== undefined) {
+          context.downConverterDeviceData2 = context.inputValue.downConverterDeviceData2
+        }
+      }
+      // console.log(this.inputValue)
+      // this.inputValue = JSON.parse(e.data)
+      // container.appendChild(text)
+    }
   }
 }
 </script>
@@ -250,6 +321,7 @@ export default {
   grid-row-end: 6;
   grid-column-start: 1;
   grid-column-end: 5;
+  background-image: url('../assets/images/svg/grid.svg');
 }
 .device-container {
   grid-column: 2;

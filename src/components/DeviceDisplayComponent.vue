@@ -12,7 +12,7 @@
     <div class="device_body">
       <div class="device_body__header">
       </div>
-      <div class="title_device" :style="'font-size: ' + fz + 'px'">{{titleDevice}}</div>
+      <div class="title_device">{{titleDevice}}</div>
       <div class="device_display">
         <slot></slot>
       </div>
@@ -63,25 +63,11 @@ export default {
     }
   },
   mounted () {
-    // const WCurrentText = this.$el.getElementsByClassName('title_device').item(0).getBoundingClientRect().width
-    // const WCurrentContainer = this.$el.getElementsByClassName('device_body__header').item(0).getBoundingClientRect().width
-    // if (WCurrentText / WCurrentContainer > 0.8) {
-    //   this.resizeCoefficient = 0.8
-    //   window.addEventListener('resize', this.reFontSizeInWidth)
-    //   this.reFontSizeInWidth()
-    // } else {
-    //   this.resizeCoefficient = WCurrentText / WCurrentContainer
-    //   window.addEventListener('resize', this.reFontSize)
+    this.reFontSize()
+    // if (this.isReFontSize) {
     //   this.reFontSize()
+    //   window.addEventListener('resize', this.reFontSize)
     // }
-    if (this.isReFontSize) {
-      this.reFontSize()
-      window.addEventListener('resize', this.reFontSize)
-    }
-  },
-  watch: {
-  },
-  updated () {
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.reFontSize)
@@ -91,6 +77,36 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width: 1920px) {
+  .wrapper_device-display-component {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1730px) {
+  .wrapper_device-display-component {
+    font-size: 12px;
+  }
+}
+@media (max-width: 1550px) {
+  .wrapper_device-display-component {
+    font-size: 11px;
+  }
+}
+@media (max-width: 1500px) {
+  .wrapper_device-display-component {
+    font-size: 10px;
+  }
+}
+@media (max-width: 1300px) {
+  .wrapper_device-display-component {
+    font-size: 8px;
+  }
+}
+@media (max-width: 1100px) {
+  .wrapper_device-display-component {
+    font-size: 7px;
+  }
+}
 .wrapper_device-display-component {
   display: grid;
   grid-template-rows: 5% 95%;

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <ContainerDeviceComponent></ContainerDeviceComponent>
+    <ContainerDeviceComponent class="test"></ContainerDeviceComponent>
   </div>
 </template>
 
@@ -37,5 +37,8 @@ body {
   width: 100%;
   height: 100%;
   border: 1px solid black;
+}
+.test {
+
 }
 </style>

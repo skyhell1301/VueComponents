@@ -1,5 +1,5 @@
 <template>
-  <path :d="pathForLine" stroke="black" stroke-width="3px"/>
+  <path :d="pathForLine" stroke="black" stroke-width="2px" fill="none"/>
 </template>
 
 <script>
@@ -9,14 +9,20 @@ export default {
     return {
       x1: '',
       x2: '',
+      variableX: '',
+      variableY: '',
       y1: '',
       y2: '',
+      widthCoefficient: '',
+      heightCoefficient: '',
+      deltaX: '',
+      deltaY: '',
       object_1: '',
       object_2: '',
-      widthSVG: '100%',
-      heightSVG: '100%',
-      topSVG: 0,
-      leftSVG: 0,
+      widthSVG: '',
+      heightSVG: '',
+      xSvg: '',
+      ySvg: '',
       pathForLine: '',
       edgesSum: this.edgesCount
     }
@@ -48,7 +54,7 @@ export default {
       type: Number,
       default: 0
     },
-    edgePositionPercent: {
+    pointEdgesArray: {
       type: Array
     }
   },
@@ -58,13 +64,16 @@ export default {
     updateLine: function () {
       let coordinate1 = this.calculateCoordinates(this.object_1, this.connectionPoint_1)
       let coordinate2 = this.calculateCoordinates(this.object_2, this.connectionPoint_2)
-      let xSvg = document.getElementById('line-container-id').getBoundingClientRect().x
-      let ySvg = document.getElementById('line-container-id').getBoundingClientRect().y
-      this.x1 = coordinate1.x - xSvg
-      this.y1 = coordinate1.y - ySvg
-      this.x2 = coordinate2.x - xSvg
-      this.y2 = coordinate2.y - ySvg
-      this.pathForLine = 'M' + this.x1 + ' ' + this.y1 + ' L ' + this.x2 + ' ' + this.y2
+      this.xSvg = document.getElementById('line-container-id').getBoundingClientRect().x
+      this.ySvg = document.getElementById('line-container-id').getBoundingClientRect().y
+      this.widthSVG = document.getElementById('line-container-id').getBoundingClientRect().width
+      this.heightSVG = document.getElementById('line-container-id').getBoundingClientRect().height
+      this.x1 = coordinate1.x - this.xSvg
+      this.y1 = coordinate1.y - this.ySvg
+      this.x2 = coordinate2.x - this.xSvg
+      this.y2 = coordinate2.y - this.ySvg
+      this.updateDeltaFlag()
+      this.createPathLine()
     },
     calculateCoordinates (obj, point) {
       let x = obj.getBoundingClientRect().x
@@ -93,32 +102,63 @@ export default {
       }
       return {x, y}
     },
+    calculateWidthAndHeightCoefficients () {
+      let curentDelta = this.getCurrentDelta()
+      this.widthCoefficient = curentDelta.X * 100 / this.deltaX / 100
+      this.heightCoefficient = curentDelta.Y * 100 / this.deltaY / 100
+    },
+    getCurrentDelta () {
+      return {X: Math.abs(this.x1 - this.x2), Y: Math.abs(this.y1 - this.y2)}
+    },
+    updateDeltaFlag () {
+      this.deltaX = Math.abs(this.x1 - this.x2)
+      this.deltaY = Math.abs(this.y1 - this.y2)
+    },
+    getStraightLineEquation () {
+      let p1 = 'M10 10 L 100 100 L 200 200'
+      let p2 = 'M100 10 L 10 100'
+      const {ShapeInfo, Intersection} = require('kld-intersections')
+      const path1 = ShapeInfo.path(p1)
+      const path2 = ShapeInfo.path(p2)
+      const intersections = Intersection.intersect(path1, path2)
+      let x1 = path1.args[0].args[0].x
+      let y1 = path1.args[0].args[0].y
+      let x2 = path1.args[0].args[1].x
+      let y2 = path1.args[0].args[1].y
+      let k = (y1 - y2) / (x1 - x2)
+      let b = y2 - k * x2
+      for (let i = 0; i <= x2; i++) {
+        // console.log(k * i + b)
+      }
+      console.log('y = ' + k + 'x + ' + b)
+      console.log(intersections)
+    },
     createPathLine () {
-      // let path = 'M' + this.x1 + ' ' + this.y1
-      // let pos
-      // if (this.y1 === 0) {
-      //   pos += 't'
-      // }
-      // if (this.x1 === 0) {
-      //   pos += 'l'
-      // }
-      // switch (this.connectionPoint_1.side) {
-      //   case 'top': {
-      //     let direct
-      //     for (let i = 0; i < this.edgesSum; i++) {
-      //     }
-      //     break
-      //   }
-      //   case 'right': {
-      //     break
-      //   }
-      //   case 'left': {
-      //     break
-      //   }
-      //   case 'bottom': {
-      //     break
-      //   }
-      // }
+      this.pathForLine = 'M' + this.x1 + ' ' + this.y1
+      let x = this.x1
+      let y = this.y1
+      for (let point of this.pointEdgesArray) {
+        switch (point.direction) {
+          case 'left': {
+            x -= point.value / 100 * this.deltaX
+            break
+          }
+          case 'up': {
+            y -= point.value / 100 * this.deltaY
+            break
+          }
+          case 'down': {
+            y += point.value / 100 * this.deltaY
+            break
+          }
+          case 'right': {
+            x += point.value / 100 * this.deltaX
+            break
+          }
+        }
+        this.pathForLine += ' L ' + x + ' ' + y
+      }
+      this.pathForLine += ' L ' + this.x2 + ' ' + this.y2
     }
   },
   mounted () {
@@ -126,6 +166,7 @@ export default {
     this.object_2 = document.getElementById(this.id_2)
     this.updateLine()
     window.addEventListener('resize', this.updateLine)
+    // this.getStraightLineEquation()
   }
 }
 </script>
