@@ -1,8 +1,7 @@
 <template>
   <div class="device-container">
     <svg id="line-container-id" class="line-container" height="100%" width="100%" fill="grid-pattern">
-      <connection-line-component style="z-index: -10"
-                                 id_1="7"
+      <connection-line-component id_1="7"
                                  :connection-point_1="{side: 'left', percent: 50}"
                                  id_2="9"
                                  :connection-point_2="{side: 'left', percent: 50}"
@@ -14,31 +13,31 @@
       <DisplayParametersComponent :device-data="antennaDeviceData"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent id="10" title-device="ТЕСТ-ТРАНСЛЯТОР" class="test-translyator-device">
-      <DisplayParametersComponent :device-data="testTranslyatorDeviceData"></DisplayParametersComponent>
+<!--      <DisplayParametersComponent :device-data="testTranslyatorDeviceData"></DisplayParametersComponent>-->
     </DeviceDisplayComponent>
     <DeviceDisplayComponent title-device="УМ #1" class="amplifier-device-1">
-      <DisplayParametersComponent :device-data="amplifier1DeviceData1"></DisplayParametersComponent>
+<!--      <DisplayParametersComponent :device-data="amplifier1DeviceData1"></DisplayParametersComponent>-->
     </DeviceDisplayComponent>
     <DeviceDisplayComponent id="8" title-device="УМ #2" class="amplifier-device-2">
-      <DisplayParametersComponent :device-data="amplifier1DeviceData2"></DisplayParametersComponent>
+<!--      <DisplayParametersComponent :device-data="amplifier1DeviceData2"></DisplayParametersComponent>-->
     </DeviceDisplayComponent>
     <DeviceDisplayComponent id="9" title-device="МШУ #1" class="MSHU-device-1">
-      <DisplayParametersComponent :device-data="MSHUDeviceData1"></DisplayParametersComponent>
+<!--      <DisplayParametersComponent :device-data="MSHUDeviceData1"></DisplayParametersComponent>-->
     </DeviceDisplayComponent>
     <DeviceDisplayComponent title-device="МШУ #2" class="MSHU-device-2">
-      <DisplayParametersComponent :device-data="MSHUDeviceData2"></DisplayParametersComponent>
+<!--      <DisplayParametersComponent :device-data="MSHUDeviceData2"></DisplayParametersComponent>-->
     </DeviceDisplayComponent>
     <DeviceDisplayComponent title-device="КОНВЕРТЕР ВВЕРХ #1" class="up-converter-1">
-      <DisplayParametersComponent :device-data="upConverterDeviceData1"></DisplayParametersComponent>
+<!--      <DisplayParametersComponent :device-data="upConverterDeviceData1"></DisplayParametersComponent>-->
     </DeviceDisplayComponent>
     <DeviceDisplayComponent title-device="КОНВЕРТЕР ВВЕРХ #2" class="up-converter-2">
-      <DisplayParametersComponent :device-data="upConverterDeviceData2"></DisplayParametersComponent>
+<!--      <DisplayParametersComponent :device-data="upConverterDeviceData2"></DisplayParametersComponent>-->
     </DeviceDisplayComponent>
     <DeviceDisplayComponent title-device="КОНВЕРТЕР ВНИЗ #1" class="down-converter-1">
-      <DisplayParametersComponent :device-data="downConverterDeviceData1"></DisplayParametersComponent>
+<!--      <DisplayParametersComponent :device-data="downConverterDeviceData1"></DisplayParametersComponent>-->
     </DeviceDisplayComponent>
     <DeviceDisplayComponent title-device="КОНВЕРТЕР ВНИЗ #2" class="down-converter-2">
-      <DisplayParametersComponent :device-data="downConverterDeviceData2"></DisplayParametersComponent>
+<!--      <DisplayParametersComponent :device-data="downConverterDeviceData2"></DisplayParametersComponent>-->
     </DeviceDisplayComponent>
   </div>
 </template>
@@ -317,6 +316,8 @@ export default {
 
 <style scoped>
 .line-container {
+  z-index: -1;
+  will-change: transform;
   grid-row-start: 1;
   grid-row-end: 6;
   grid-column-start: 1;
@@ -324,6 +325,7 @@ export default {
   background-image: url('../assets/images/svg/grid.svg');
 }
 .device-container {
+  z-index: 1;
   grid-column: 2;
   grid-row: 2;
   border: 1px solid black;

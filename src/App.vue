@@ -1,15 +1,17 @@
 <template>
   <div id="app">
-    <ContainerDeviceComponent class="test"></ContainerDeviceComponent>
+    <ContainerDeviceComponent></ContainerDeviceComponent>
   </div>
 </template>
 
 <script>
 import ContainerDeviceComponent from './components/ContainerDeviceComponent'
+import ConnectionLineComponent from './components/ConnectionLineComponent'
 export default {
   name: 'App',
   components: {
-    ContainerDeviceComponent
+    ContainerDeviceComponent,
+    ConnectionLineComponent
   }
 }
 </script>
@@ -37,8 +39,5 @@ body {
   width: 100%;
   height: 100%;
   border: 1px solid black;
-}
-.test {
-
 }
 </style>

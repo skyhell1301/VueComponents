@@ -62,7 +62,7 @@ export default {
     }
   },
   mounted () {
-    this.reFontSize()
+    // this.reFontSize()
     // window.addEventListener('resize', this.reFontSize)
   }
 }

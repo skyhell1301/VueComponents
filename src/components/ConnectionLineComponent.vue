@@ -1,5 +1,10 @@
 <template>
-  <path :d="pathForLine" stroke="black" stroke-width="2px" fill="none"/>
+  <g class="connect-line-component" id="connect-line-component-id">
+    <path :d="pathForLine" stroke="black" stroke-width="2px" fill="none"/>
+    <rect id="kek" class="motion-object">
+    </rect>
+    <circle class="my-circle" r="30" cx="50" cy="50" fill="orange" />
+  </g>
 </template>
 
 <script>
@@ -23,6 +28,7 @@ export default {
       heightSVG: '',
       xSvg: '',
       ySvg: '',
+      coordinateArray: [],
       pathForLine: '',
       edgesSum: this.edgesCount
     }
@@ -34,10 +40,10 @@ export default {
     id_2: {
       type: String
     },
-    // (точка соединения объекта) connectionPoint = 'tl' - верх-слева, 'tm' - верх-середина, 'tr' - верх-справа
-    // 'rt' - право-верх, 'rm' - право-середина, 'rb' - право-низ
-    // 'bl' - низ-слева, 'bm' - низ-середина, 'br' - низ-справа
-    // 'lt' - слева-верх, 'lm' - слева-середина, 'lb' - слева-низ
+    // (точка соединения объекта) connectionPoint = {side: 'left', percent: 50}
+    // side - сторона (left, top, right, bottom)
+    // percent - процент от длины стороны
+    // Пример: {side: 'left', percent: 50} - левая сторона объекта, 50% от высоты объекта
     connectionPoint_1: {
       type: Object,
       default: function () {
@@ -134,6 +140,8 @@ export default {
       console.log(intersections)
     },
     createPathLine () {
+      this.coordinateArray = []
+      this.coordinateArray.push({x: this.x1, y: this.y1})
       this.pathForLine = 'M' + this.x1 + ' ' + this.y1
       let x = this.x1
       let y = this.y1
@@ -156,9 +164,19 @@ export default {
             break
           }
         }
+        this.coordinateArray.push({x: x, y: y})
         this.pathForLine += ' L ' + x + ' ' + y
       }
+      this.coordinateArray.push({x: this.x2, y: this.y2})
       this.pathForLine += ' L ' + this.x2 + ' ' + this.y2
+      // let obj = document.getElementById('kek')
+      // console.log(document.getElementById('kek'))
+      // obj.style.transform = 'translate3d(' + this.x1 + 'px, ' + this.y1 + 'px, 0px)'
+      // obj.style.transform = 'translate3d(' + this.x1 + 'px, 0px, 0px)'
+      // for (let i = 0; i < this.coordinateArray.length; i++) {
+      //   obj.style.transform = 'translate(' + this.coordinateArray[i].x + 'px, ' + this.coordinateArray[i].y + 'px)'
+      // }
+      document.getElementById('connect-line-component-id').style.setProperty('--path-animation', this.pathForLine)
     }
   },
   mounted () {
@@ -172,5 +190,34 @@ export default {
 </script>
 
 <style scoped>
-
+.connect-line-component {
+  --path-animation: 'M644.8125 64.4766 L 635.141 64.4766 L 635.141 162.007 L 441.703 162.007 L 441.703 241.805 L 451.375 241.805';
+  width: 100%;
+  height: 100%;
+}
+.motion-object {
+  //transition: transform 3s;
+  //transform: translate3d(500px, 0px, 0px);
+  width: 10px;
+  height: 10px;
+  fill: hotpink;
+  border-radius: 50%;
+}
+.motion-object {
+  //offset-path: path(var(--path-animation)); /* this is a square path */
+  //animation: move 2s ease infinite;
+}
+.my-circle {
+  animation: move 2s ease infinite;
+}
+@keyframes move {
+  0% {
+    //offset-distance: 0%;
+    transform: translate3d(0px, 0px, 0px);
+  }
+  100% {
+    transform: translate3d(500px, 0px, 0px);
+    //offset-distance: 100%;
+  }
+}
 </style>
