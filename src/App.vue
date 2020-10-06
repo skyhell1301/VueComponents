@@ -6,12 +6,10 @@
 
 <script>
 import ContainerDeviceComponent from './components/ContainerDeviceComponent'
-import ConnectionLineComponent from './components/ConnectionLineComponent'
 export default {
   name: 'App',
   components: {
-    ContainerDeviceComponent,
-    ConnectionLineComponent
+    ContainerDeviceComponent
   }
 }
 </script>

@@ -1,17 +1,23 @@
 <template>
   <g class="connect-line-component" id="connect-line-component-id">
     <path :d="pathForLine" stroke="black" stroke-width="2px" fill="none"/>
-    <rect id="kek" class="motion-object">
-    </rect>
-    <circle class="my-circle" r="30" cx="50" cy="50" fill="orange" />
+    <rect :id="ID" class="motion-object"></rect>
   </g>
 </template>
 
 <script>
+import { gsap } from 'gsap'
+import MotionPathPlugin from 'gsap/MotionPathPlugin'
 export default {
   name: 'ConnectionLineComponent',
   data () {
     return {
+      ID: (function () {
+        const one = Math.floor((Math.random() * 1000000) + 1) + ''
+        const two = Math.floor((Math.random() * 1000000) + 1) + ''
+        const three = Math.floor((Math.random() * 1000000) + 1) + ''
+        return 'id' + one + two + three
+      })(),
       x1: '',
       x2: '',
       variableX: '',
@@ -177,12 +183,19 @@ export default {
       //   obj.style.transform = 'translate(' + this.coordinateArray[i].x + 'px, ' + this.coordinateArray[i].y + 'px)'
       // }
       document.getElementById('connect-line-component-id').style.setProperty('--path-animation', this.pathForLine)
+    },
+    test () {
+      // let a = document.getElementById('kek')
+      gsap.registerPlugin(MotionPathPlugin)
+      gsap.set('#' + this.ID, {xPercent: -50, yPercent: -50, transformOrigin: '50% 50%'})
+      gsap.to('#' + this.ID, {duration: 5, motionPath: this.pathForLine, repeat: 5, ease: 'linear'})
     }
   },
   mounted () {
     this.object_1 = document.getElementById(this.id_1)
     this.object_2 = document.getElementById(this.id_2)
     this.updateLine()
+    this.test()
     window.addEventListener('resize', this.updateLine)
     // this.getStraightLineEquation()
   }
@@ -196,28 +209,10 @@ export default {
   height: 100%;
 }
 .motion-object {
-  //transition: transform 3s;
-  //transform: translate3d(500px, 0px, 0px);
   width: 10px;
   height: 10px;
   fill: hotpink;
-  border-radius: 50%;
-}
-.motion-object {
-  //offset-path: path(var(--path-animation)); /* this is a square path */
-  //animation: move 2s ease infinite;
-}
-.my-circle {
-  animation: move 2s ease infinite;
-}
-@keyframes move {
-  0% {
-    //offset-distance: 0%;
-    transform: translate3d(0px, 0px, 0px);
-  }
-  100% {
-    transform: translate3d(500px, 0px, 0px);
-    //offset-distance: 100%;
-  }
+  border: 1px;
+  border-radius: 1px;
 }
 </style>

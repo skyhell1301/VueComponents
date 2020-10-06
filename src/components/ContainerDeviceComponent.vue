@@ -8,36 +8,43 @@
                                  :point-edges-array="lineData"
       >
       </connection-line-component>
+      <connection-line-component id_1="10"
+                                 :connection-point_1="{side: 'left', percent: 50}"
+                                 id_2="11"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineData2"
+      >
+      </connection-line-component>
     </svg>
     <DeviceDisplayComponent id="7" title-device="АНТЕННАЯ СИСТЕМА" class="antenna-system-device">
       <DisplayParametersComponent :device-data="antennaDeviceData"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent id="10" title-device="ТЕСТ-ТРАНСЛЯТОР" class="test-translyator-device">
-<!--      <DisplayParametersComponent :device-data="testTranslyatorDeviceData"></DisplayParametersComponent>-->
+      <DisplayParametersComponent :device-data="testTranslyatorDeviceData"></DisplayParametersComponent>
     </DeviceDisplayComponent>
-    <DeviceDisplayComponent title-device="УМ #1" class="amplifier-device-1">
-<!--      <DisplayParametersComponent :device-data="amplifier1DeviceData1"></DisplayParametersComponent>-->
+    <DeviceDisplayComponent id="11" title-device="УМ #1" class="amplifier-device-1">
+      <DisplayParametersComponent :device-data="amplifier1DeviceData1"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent id="8" title-device="УМ #2" class="amplifier-device-2">
-<!--      <DisplayParametersComponent :device-data="amplifier1DeviceData2"></DisplayParametersComponent>-->
+      <DisplayParametersComponent :device-data="amplifier1DeviceData2"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent id="9" title-device="МШУ #1" class="MSHU-device-1">
-<!--      <DisplayParametersComponent :device-data="MSHUDeviceData1"></DisplayParametersComponent>-->
+      <DisplayParametersComponent :device-data="MSHUDeviceData1"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent title-device="МШУ #2" class="MSHU-device-2">
-<!--      <DisplayParametersComponent :device-data="MSHUDeviceData2"></DisplayParametersComponent>-->
+      <DisplayParametersComponent :device-data="MSHUDeviceData2"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent title-device="КОНВЕРТЕР ВВЕРХ #1" class="up-converter-1">
-<!--      <DisplayParametersComponent :device-data="upConverterDeviceData1"></DisplayParametersComponent>-->
+      <DisplayParametersComponent :device-data="upConverterDeviceData1"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent title-device="КОНВЕРТЕР ВВЕРХ #2" class="up-converter-2">
-<!--      <DisplayParametersComponent :device-data="upConverterDeviceData2"></DisplayParametersComponent>-->
+      <DisplayParametersComponent :device-data="upConverterDeviceData2"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent title-device="КОНВЕРТЕР ВНИЗ #1" class="down-converter-1">
-<!--      <DisplayParametersComponent :device-data="downConverterDeviceData1"></DisplayParametersComponent>-->
+      <DisplayParametersComponent :device-data="downConverterDeviceData1"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent title-device="КОНВЕРТЕР ВНИЗ #2" class="down-converter-2">
-<!--      <DisplayParametersComponent :device-data="downConverterDeviceData2"></DisplayParametersComponent>-->
+      <DisplayParametersComponent :device-data="downConverterDeviceData2"></DisplayParametersComponent>
     </DeviceDisplayComponent>
   </div>
 </template>
@@ -93,6 +100,16 @@ export default {
         {
           direction: 'down',
           value: 45
+        }
+      ],
+      lineData2: [
+        {
+          direction: 'left',
+          value: 100
+        },
+        {
+          direction: 'down',
+          value: 100
         }
       ],
       testTranslyatorDeviceData: {
@@ -258,58 +275,57 @@ export default {
     DisplayParametersComponent
   },
   methods: {
+    getWebSocketData () {
+      let context = this
+      // Create a new WebSocket.
+      let socket = new WebSocket('ws://10.10.0.16:8080')
+      socket.onmessage = function (e) {
+        let text = JSON.parse(e.data)
+        if (text.DeviceParameters !== null && text.DeviceParameters !== undefined) {
+          context.inputValue = text.DeviceParameters
+          if (context.inputValue.antennaDeviceData !== null && context.inputValue.antennaDeviceData !== undefined) {
+            context.antennaDeviceData = context.inputValue.antennaDeviceData
+          }
+          if (context.inputValue.testTranslyatorDeviceData !== null && context.inputValue.testTranslyatorDeviceData !== undefined) {
+            context.testTranslyatorDeviceData = context.inputValue.testTranslyatorDeviceData
+          }
+          if (context.inputValue.amplifier1DeviceData1 !== null && context.inputValue.amplifier1DeviceData1 !== undefined) {
+            context.amplifier1DeviceData1 = context.inputValue.amplifier1DeviceData1
+          }
+          if (context.inputValue.amplifier1DeviceData2 !== null && context.inputValue.amplifier1DeviceData2 !== undefined) {
+            context.amplifier1DeviceData2 = context.inputValue.amplifier1DeviceData2
+          }
+          if (context.inputValue.MSHUDeviceData1 !== null && context.inputValue.MSHUDeviceData1 !== undefined) {
+            context.MSHUDeviceData1 = context.inputValue.MSHUDeviceData1
+          }
+          if (context.inputValue.MSHUDeviceData2 !== null && context.inputValue.MSHUDeviceData2 !== undefined) {
+            context.MSHUDeviceData2 = context.inputValue.MSHUDeviceData2
+          }
+          if (context.inputValue.upConverterDeviceData1 !== null && context.inputValue.upConverterDeviceData1 !== undefined) {
+            context.upConverterDeviceData1 = context.inputValue.upConverterDeviceData1
+          }
+          if (context.inputValue.upConverterDeviceData2 !== null && context.inputValue.upConverterDeviceData2 !== undefined) {
+            context.upConverterDeviceData2 = context.inputValue.upConverterDeviceData2
+          }
+          if (context.inputValue.downConverterDeviceData1 !== null && context.inputValue.downConverterDeviceData1 !== undefined) {
+            context.downConverterDeviceData1 = context.inputValue.downConverterDeviceData1
+          }
+          if (context.inputValue.downConverterDeviceData2 !== null && context.inputValue.downConverterDeviceData2 !== undefined) {
+            context.downConverterDeviceData2 = context.inputValue.downConverterDeviceData2
+          }
+        }
+        // console.log(this.inputValue)
+        this.inputValue = JSON.parse(e.data)
+      }
+    }
   },
   mounted () {
-    let context = this
-    // Create a new WebSocket.
-    let socket = new WebSocket('ws://10.10.0.16:8080')
-
     // Define the
     // let message = document.getElementById('message')
     //
     // function transmitMessage() {
     //   socket.send(message.value)
     // }
-
-    socket.onmessage = function (e) {
-      let text = JSON.parse(e.data)
-      if (text.DeviceParameters !== null && text.DeviceParameters !== undefined) {
-        context.inputValue = text.DeviceParameters
-        if (context.inputValue.antennaDeviceData !== null && context.inputValue.antennaDeviceData !== undefined) {
-          context.antennaDeviceData = context.inputValue.antennaDeviceData
-        }
-        if (context.inputValue.testTranslyatorDeviceData !== null && context.inputValue.testTranslyatorDeviceData !== undefined) {
-          context.testTranslyatorDeviceData = context.inputValue.testTranslyatorDeviceData
-        }
-        if (context.inputValue.amplifier1DeviceData1 !== null && context.inputValue.amplifier1DeviceData1 !== undefined) {
-          context.amplifier1DeviceData1 = context.inputValue.amplifier1DeviceData1
-        }
-        if (context.inputValue.amplifier1DeviceData2 !== null && context.inputValue.amplifier1DeviceData2 !== undefined) {
-          context.amplifier1DeviceData2 = context.inputValue.amplifier1DeviceData2
-        }
-        if (context.inputValue.MSHUDeviceData1 !== null && context.inputValue.MSHUDeviceData1 !== undefined) {
-          context.MSHUDeviceData1 = context.inputValue.MSHUDeviceData1
-        }
-        if (context.inputValue.MSHUDeviceData2 !== null && context.inputValue.MSHUDeviceData2 !== undefined) {
-          context.MSHUDeviceData2 = context.inputValue.MSHUDeviceData2
-        }
-        if (context.inputValue.upConverterDeviceData1 !== null && context.inputValue.upConverterDeviceData1 !== undefined) {
-          context.upConverterDeviceData1 = context.inputValue.upConverterDeviceData1
-        }
-        if (context.inputValue.upConverterDeviceData2 !== null && context.inputValue.upConverterDeviceData2 !== undefined) {
-          context.upConverterDeviceData2 = context.inputValue.upConverterDeviceData2
-        }
-        if (context.inputValue.downConverterDeviceData1 !== null && context.inputValue.downConverterDeviceData1 !== undefined) {
-          context.downConverterDeviceData1 = context.inputValue.downConverterDeviceData1
-        }
-        if (context.inputValue.downConverterDeviceData2 !== null && context.inputValue.downConverterDeviceData2 !== undefined) {
-          context.downConverterDeviceData2 = context.inputValue.downConverterDeviceData2
-        }
-      }
-      // console.log(this.inputValue)
-      // this.inputValue = JSON.parse(e.data)
-      // container.appendChild(text)
-    }
   }
 }
 </script>
