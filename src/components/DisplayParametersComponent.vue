@@ -62,8 +62,6 @@ export default {
     }
   },
   mounted () {
-    // this.reFontSize()
-    // window.addEventListener('resize', this.reFontSize)
   }
 }
 </script>

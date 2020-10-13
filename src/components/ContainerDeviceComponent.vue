@@ -1,11 +1,13 @@
 <template>
   <div class="device-container">
-    <svg id="line-container-id" class="line-container" height="100%" width="100%" fill="grid-pattern">
+    <svg id="line-container-id" class="line-container" height="100%" width="100%">
       <connection-line-component id_1="7"
                                  :connection-point_1="{side: 'left', percent: 50}"
                                  id_2="9"
                                  :connection-point_2="{side: 'left', percent: 50}"
                                  :point-edges-array="lineData"
+                                 :active-animation="test"
+                                 :animation-duration="10"
       >
       </connection-line-component>
       <connection-line-component id_1="10"
@@ -13,39 +15,62 @@
                                  id_2="11"
                                  :connection-point_2="{side: 'top', percent: 50}"
                                  :point-edges-array="lineData2"
+                                 :active-animation="test"
       >
       </connection-line-component>
     </svg>
     <DeviceDisplayComponent id="7" title-device="АНТЕННАЯ СИСТЕМА" class="antenna-system-device">
+<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
+<!--      <test :device-data="antennaDeviceData"></test>-->
       <DisplayParametersComponent :device-data="antennaDeviceData"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent id="10" title-device="ТЕСТ-ТРАНСЛЯТОР" class="test-translyator-device">
+<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
+<!--      <test :device-data="antennaDeviceData"></test>-->
       <DisplayParametersComponent :device-data="testTranslyatorDeviceData"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent id="11" title-device="УМ #1" class="amplifier-device-1">
+<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
+<!--      <test :device-data="antennaDeviceData"></test>-->
       <DisplayParametersComponent :device-data="amplifier1DeviceData1"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent id="8" title-device="УМ #2" class="amplifier-device-2">
+<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
+<!--      <test :device-data="antennaDeviceData"></test>-->
       <DisplayParametersComponent :device-data="amplifier1DeviceData2"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent id="9" title-device="МШУ #1" class="MSHU-device-1">
+<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
+<!--      <test :device-data="antennaDeviceData"></test>-->
       <DisplayParametersComponent :device-data="MSHUDeviceData1"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent title-device="МШУ #2" class="MSHU-device-2">
+<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
+<!--      <test :device-data="antennaDeviceData"></test>-->
       <DisplayParametersComponent :device-data="MSHUDeviceData2"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent title-device="КОНВЕРТЕР ВВЕРХ #1" class="up-converter-1">
+<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
+<!--      <test :device-data="antennaDeviceData"></test>-->
       <DisplayParametersComponent :device-data="upConverterDeviceData1"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent title-device="КОНВЕРТЕР ВВЕРХ #2" class="up-converter-2">
+<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
+<!--      <test :device-data="antennaDeviceData"></test>-->
       <DisplayParametersComponent :device-data="upConverterDeviceData2"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent title-device="КОНВЕРТЕР ВНИЗ #1" class="down-converter-1">
+<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
+<!--      <test :device-data="antennaDeviceData"></test>-->
       <DisplayParametersComponent :device-data="downConverterDeviceData1"></DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent title-device="КОНВЕРТЕР ВНИЗ #2" class="down-converter-2">
+<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
+<!--      <test :device-data="antennaDeviceData"></test>-->
       <DisplayParametersComponent :device-data="downConverterDeviceData2"></DisplayParametersComponent>
     </DeviceDisplayComponent>
+    <SwitchComponent class="switch-1"></SwitchComponent>
+    <input type="checkbox" v-model="test">
   </div>
 </template>
 
@@ -54,12 +79,14 @@ import PopUpWindow from './PopUpWindow'
 import DeviceDisplayComponent from './DeviceDisplayComponent'
 import ConnectionLineComponent from './ConnectionLineComponent'
 import DisplayParametersComponent from './DisplayParametersComponent'
+import SwitchComponent from './SwitchComponent'
 
 export default {
   name: 'ContainerDeviceComponent',
   data () {
     return {
       inputValue: '',
+      test: false,
       antennaDeviceData: {
         deviceParameters: [
           {
@@ -272,7 +299,8 @@ export default {
     PopUpWindow,
     DeviceDisplayComponent,
     ConnectionLineComponent,
-    DisplayParametersComponent
+    DisplayParametersComponent,
+    SwitchComponent
   },
   methods: {
     getWebSocketData () {
@@ -320,6 +348,7 @@ export default {
     }
   },
   mounted () {
+    this.getWebSocketData()
     // Define the
     // let message = document.getElementById('message')
     //
@@ -432,5 +461,15 @@ export default {
   height: 80%;
   justify-self: center;
   align-self: center;;
+}
+
+.switch-1{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row: 1;
+  width: 20%;
+  height: 50%;
+  align-self: center;
+  justify-self: center;
 }
 </style>

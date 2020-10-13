@@ -1,7 +1,7 @@
 <template>
   <g class="connect-line-component" id="connect-line-component-id">
-    <path :d="pathForLine" stroke="black" stroke-width="2px" fill="none"/>
-    <rect :id="ID" class="motion-object"></rect>
+    <path :d="pathForLine" class="path-line"/>
+    <circle :id="ID" class="motion-object" style="fill: rgba(134, 218, 82, 0.9);" cx="4" cy="4" r="4"></circle>
   </g>
 </template>
 
@@ -35,8 +35,7 @@ export default {
       xSvg: '',
       ySvg: '',
       coordinateArray: [],
-      pathForLine: '',
-      edgesSum: this.edgesCount
+      pathForLine: ''
     }
   },
   props: {
@@ -62,18 +61,30 @@ export default {
         return {side: 'top', percent: 50}
       }
     },
-    edgesCount: {
-      type: Number,
-      default: 0
-    },
     pointEdgesArray: {
       type: Array
+    },
+    activeAnimation: {
+      type: Boolean,
+      default: false
+    },
+    animationDuration: {
+      type: Number,
+      default: 5
     }
   },
   watch: {
+    activeAnimation: function () {
+      if (this.activeAnimation) {
+        this.startAnimation()
+      } else {
+        this.stopAnimation()
+      }
+    }
   },
   methods: {
     updateLine: function () {
+      this.stopAnimation()
       let coordinate1 = this.calculateCoordinates(this.object_1, this.connectionPoint_1)
       let coordinate2 = this.calculateCoordinates(this.object_2, this.connectionPoint_2)
       this.xSvg = document.getElementById('line-container-id').getBoundingClientRect().x
@@ -86,6 +97,9 @@ export default {
       this.y2 = coordinate2.y - this.ySvg
       this.updateDeltaFlag()
       this.createPathLine()
+      if (this.activeAnimation) {
+        this.startAnimation()
+      }
     },
     calculateCoordinates (obj, point) {
       let x = obj.getBoundingClientRect().x
@@ -115,9 +129,9 @@ export default {
       return {x, y}
     },
     calculateWidthAndHeightCoefficients () {
-      let curentDelta = this.getCurrentDelta()
-      this.widthCoefficient = curentDelta.X * 100 / this.deltaX / 100
-      this.heightCoefficient = curentDelta.Y * 100 / this.deltaY / 100
+      let currentDelta = this.getCurrentDelta()
+      this.widthCoefficient = currentDelta.X * 100 / this.deltaX / 100
+      this.heightCoefficient = currentDelta.Y * 100 / this.deltaY / 100
     },
     getCurrentDelta () {
       return {X: Math.abs(this.x1 - this.x2), Y: Math.abs(this.y1 - this.y2)}
@@ -140,7 +154,6 @@ export default {
       let k = (y1 - y2) / (x1 - x2)
       let b = y2 - k * x2
       for (let i = 0; i <= x2; i++) {
-        // console.log(k * i + b)
       }
       console.log('y = ' + k + 'x + ' + b)
       console.log(intersections)
@@ -175,44 +188,41 @@ export default {
       }
       this.coordinateArray.push({x: this.x2, y: this.y2})
       this.pathForLine += ' L ' + this.x2 + ' ' + this.y2
-      // let obj = document.getElementById('kek')
-      // console.log(document.getElementById('kek'))
-      // obj.style.transform = 'translate3d(' + this.x1 + 'px, ' + this.y1 + 'px, 0px)'
-      // obj.style.transform = 'translate3d(' + this.x1 + 'px, 0px, 0px)'
-      // for (let i = 0; i < this.coordinateArray.length; i++) {
-      //   obj.style.transform = 'translate(' + this.coordinateArray[i].x + 'px, ' + this.coordinateArray[i].y + 'px)'
-      // }
-      document.getElementById('connect-line-component-id').style.setProperty('--path-animation', this.pathForLine)
     },
-    test () {
-      // let a = document.getElementById('kek')
-      gsap.registerPlugin(MotionPathPlugin)
-      gsap.set('#' + this.ID, {xPercent: -50, yPercent: -50, transformOrigin: '50% 50%'})
-      gsap.to('#' + this.ID, {duration: 5, motionPath: this.pathForLine, repeat: 5, ease: 'linear'})
+    startAnimation () {
+      gsap.set('#' + this.ID, {xPercent: -50, yPercent: -50, transformOrigin: '50% 50%', opacity: 1})
+      gsap.to('#' + this.ID, {duration: this.animationDuration, repeat: -1, motionPath: this.pathForLine, ease: 'linear'})
+    },
+    stopAnimation () {
+      gsap.killTweensOf('#' + this.ID)
+      gsap.set('#' + this.ID, {opacity: 0})
     }
   },
   mounted () {
     this.object_1 = document.getElementById(this.id_1)
     this.object_2 = document.getElementById(this.id_2)
+    gsap.registerPlugin(MotionPathPlugin)
     this.updateLine()
-    this.test()
     window.addEventListener('resize', this.updateLine)
-    // this.getStraightLineEquation()
   }
 }
 </script>
 
 <style scoped>
 .connect-line-component {
-  --path-animation: 'M644.8125 64.4766 L 635.141 64.4766 L 635.141 162.007 L 441.703 162.007 L 441.703 241.805 L 451.375 241.805';
   width: 100%;
   height: 100%;
 }
+.path-line {
+  stroke: black;
+  stroke-width: 2px;
+  fill: none;
+}
+
 .motion-object {
   width: 10px;
   height: 10px;
   fill: hotpink;
   border: 1px;
-  border-radius: 1px;
 }
 </style>
