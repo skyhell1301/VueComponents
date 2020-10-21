@@ -8,6 +8,7 @@
       <div class="param">{{ param.nameParameter }}</div>
       <div class="value">{{ param.valueParameter }}</div>
     </div>
+    <slot></slot>
   </div>
 </template>
 
@@ -94,6 +95,8 @@ export default {
 }
 
 .table_parameters {
+  user-select: none;
+  cursor: pointer;
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 50% 50%;

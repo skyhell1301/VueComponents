@@ -191,11 +191,16 @@ export default {
     },
     startAnimation () {
       gsap.set('#' + this.ID, {xPercent: -50, yPercent: -50, transformOrigin: '50% 50%', opacity: 1})
-      gsap.to('#' + this.ID, {duration: this.animationDuration, repeat: -1, motionPath: this.pathForLine, ease: 'linear'})
+      let move = gsap.to('#' + this.ID, {duration: this.animationDuration, repeat: 0, motionPath: this.pathForLine, ease: 'linear'})
+      move.eventCallback('onComplete', this.endAnimation)
     },
     stopAnimation () {
       gsap.killTweensOf('#' + this.ID)
       gsap.set('#' + this.ID, {opacity: 0})
+    },
+    endAnimation () {
+      gsap.set('#' + this.ID, {opacity: 0})
+      this.$emit('onComplete')
     }
   },
   mounted () {

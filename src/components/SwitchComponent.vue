@@ -1,38 +1,130 @@
 <template>
-  <div class="switch-container">
-    <svg class="svg-element" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <g class="test">
-        <path style="stroke: rgb(0, 0, 0); fill: rgb(205, 205, 205);" d="M 100 50 L 100 50 L 99.999 53.145 L 99.992 56.316 L 99.964 59.532 L 99.896 62.812 L 99.76 66.168 L 99.516 69.605 L 99.116 73.113 L 98.499 76.663 L 97.591 80.203 L 96.321 83.655 L 94.631 86.921 L 92.485 89.896 L 89.896 92.485 L 86.921 94.631 L 83.655 96.323 L 80.203 97.591 L 76.663 98.499 L 73.112 99.117 L 69.605 99.517 L 66.168 99.76 L 62.811 99.897 L 59.531 99.964 L 56.316 99.992 L 53.145 100 L 50 100 L 46.855 100 L 43.684 99.992 L 40.469 99.964 L 37.189 99.897 L 33.832 99.76 L 30.395 99.517 L 26.888 99.117 L 23.337 98.499 L 19.797 97.591 L 16.345 96.323 L 13.079 94.631 L 10.104 92.485 L 7.515 89.896 L 5.369 86.921 L 3.679 83.655 L 2.409 80.203 L 1.501 76.663 L 0.884 73.113 L 0.484 69.605 L 0.24 66.168 L 0.104 62.812 L 0.036 59.532 L 0.008 56.316 L 0 53.145 L 0 50 L 0 46.855 L 0.008 43.685 L 0.036 40.469 L 0.104 37.189 L 0.24 33.832 L 0.484 30.395 L 0.884 26.888 L 1.501 23.339 L 2.409 19.799 L 3.679 16.345 L 5.369 13.079 L 7.515 10.104 L 10.104 7.516 L 13.079 5.369 L 16.345 3.679 L 19.797 2.409 L 23.337 1.503 L 26.888 0.884 L 30.395 0.484 L 33.832 0.24 L 37.189 0.104 L 40.469 0.036 L 43.684 0.008 L 46.855 0.001 L 50 0 L 53.145 0.001 L 56.316 0.008 L 59.531 0.036 L 62.811 0.104 L 66.168 0.24 L 69.605 0.484 L 73.112 0.884 L 76.663 1.503 L 80.203 2.409 L 83.655 3.679 L 86.921 5.369 L 89.896 7.516 L 92.485 10.104 L 94.631 13.079 L 96.321 16.345 L 97.591 19.799 L 98.499 23.339 L 99.116 26.888 L 99.516 30.395 L 99.76 33.832 L 99.896 37.189 L 99.964 40.469 L 99.992 43.685 L 99.999 46.855 L 100 50"></path>
-        <circle style="" cx="32.5" cy="50.019" r="2.5"></circle>
-        <circle style="" cx="50.008" cy="32.5" r="2.5"></circle>
-        <circle style="" cx="50.008" cy="67.5" r="2.5"></circle>
-        <circle style="" cx="67.5" cy="50.019" r="2.5"></circle>
-        <path style="stroke: rgb(0, 0, 0); stroke-width: 2px; fill: none;" d="M -0.033 50.042 C 27.603 50.042 50.005 27.636 50 0"></path>
-        <path style="stroke: rgb(0, 0, 0); stroke-width: 2px; fill: none;" d="M 49.967 100.084 C 77.603 100.084 100.005 77.678 100 50.042" transform="matrix(-1, 0, 0, -1, 149.966999, 150.125999)"></path>
+  <div class="switch-container" @click="rotateStart">
+    <div class="background-div"></div>
+    <div class="background-rectangle"></div>
+    <svg class="svg-element" viewBox="0 0 50 50" preserveAspectRatio="none">
+<!--      <defs>-->
+<!--        <linearGradient id="Gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">-->
+<!--          <stop offset="0%" style="stop-color: rgb(235,235,235)"/>-->
+<!--          <stop offset="100%" style="stop-color: rgb(166,166,166)"/>-->
+<!--        </linearGradient>-->
+<!--        <filter id="f1" x="0" y="0" width="100%" height="100%">-->
+<!--          <feOffset result="offOut" in="SourceAlpha" dx="0" dy="0" />-->
+<!--          <feGaussianBlur result="blurOut" in="offOut" stdDeviation="2" />-->
+<!--          <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />-->
+<!--        </filter>-->
+<!--      </defs>-->
+<!--&lt;!&ndash;      <path class="background"&ndash;&gt;-->
+<!--&lt;!&ndash;            d="M 0 13.75 C 0 13.75 0 7.5 3.75 3.75 C 7.5 0 13.75 0 13.75 0 L 36.25 0 C 36.25 0 42.5 0 46.25 3.75 C 50 7.5 50 13.75 50 13.75 L 50 36.25 C 50 36.25 50 42.5 46.25 46.25 C 42.5 50 36.25 50 36.25 50 L 13.75 50 C 13.75 50 7.5 50 3.75 46.25 C 0 42.5 0 36.25 0 36.25 L 0 13.75 Z"&ndash;&gt;-->
+<!--&lt;!&ndash;      />&ndash;&gt;-->
+<!--      <path class="rectangle-background"-->
+<!--            filter="url(#f1)"-->
+<!--            d="M 3 15.1 C 3 15.1 3 9.6 6.3 6.3 C 9.6 3 15.1 3 15.1 3 L 34.9 3 C 34.9 3 40.4 3 43.7 6.3 C 47 9.6 47 15.1 47 15.1 L 47 34.9 C 47 34.9 47 40.4 43.7 43.7 C 40.4 47 34.9 47 34.9 47 L 15.1 47 C 15.1 47 9.6 47 6.3 43.7 C 3 40.4 3 34.9 3 34.9 L 3 15.1 Z"-->
+<!--      />-->
+      <g :id="'rotate-' + ID">
+        <path class="arc-line" d="M 0 25 C 15 25 25 15 25 0"></path>
+        <path class="arc-line" d="M 25 50 C 25 35 35 25 50 25"></path>
+        <circle :id="ID" class="switch-motion-object" style="fill: rgba(134, 218, 82, 0.9);" cx="4" cy="4" r="4"></circle>
       </g>
+      <text style="fill: rgb(51, 51, 51); font-family: Roboto Slab; font-size: 7px; white-space: pre;" x="17" y="26">1</text>
+      <text style="fill: rgb(51, 51, 51); font-family: Roboto Slab; font-size: 7px; white-space: pre;" x="24" y="19">2</text>
+      <text style="fill: rgb(51, 51, 51); font-family: Roboto Slab; font-size: 7px; white-space: pre;" x="31" y="26">3</text>
+      <text style="fill: rgb(51, 51, 51); font-family: Roboto Slab; font-size: 7px; white-space: pre;" x="24" y="34">4</text>
     </svg>
   </div>
 </template>
 
 <script>
+import { gsap } from 'gsap'
+import MotionPathPlugin from 'gsap/MotionPathPlugin'
 export default {
-  name: 'SwitchComponent'
+  name: 'SwitchComponent',
+  data () {
+    return {
+      ID: (function () {
+        const one = Math.floor((Math.random() * 1000000) + 1) + ''
+        const two = Math.floor((Math.random() * 1000000) + 1) + ''
+        const three = Math.floor((Math.random() * 1000000) + 1) + ''
+        return 'id' + one + two + three
+      })(),
+      pathForLine1: 'M 0 25 C 15 25 25 15 25 0',
+      pathForLine2: 'M 25 50 C 25 35 35 25 50 25',
+      rotateValue: 0
+    }
+  },
+  props: {
+    animationDuration: {
+      type: Number,
+      default: 5
+    },
+    port_in_1: {
+      type: Number
+    },
+    port_in_2: {
+      type: Number
+    }
+  },
+  methods: {
+    rotateStart () {
+      gsap.set('#' + 'rotate-' + this.ID, {transformOrigin: '50% 50%'})
+      this.rotateValue = this.rotateValue === 90 ? 0 : 90
+      gsap.to('#' + 'rotate-' + this.ID, {duration: 1, repeat: 0, rotation: this.rotateValue})
+    },
+    startAnimation () {
+      gsap.set('#' + this.ID, {xPercent: -50, yPercent: -50, transformOrigin: '50% 50%', opacity: 1})
+      let move = gsap.to('#' + this.ID, {duration: this.animationDuration, repeat: 0, motionPath: this.pathForLine1, ease: 'linear', runBackwards: true})
+      move.eventCallback('onComplete', this.endAnimation)
+    },
+    endAnimation () {
+      gsap.set('#' + this.ID, {opacity: 0})
+      this.$emit('onComplete')
+    }
+  },
+  mounted () {
+    gsap.registerPlugin(MotionPathPlugin)
+  }
 }
 </script>
 
 <style scoped>
 .switch-container {
+  display: grid;
   position: relative;
+  cursor: default;
 }
 .svg-element {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  grid-row: 1;
+  grid-column: 1;
   height: 100%;
   width: 100%;
 }
-.test {
-  width: 100%;
+.background-div {
   height: 100%;
+  width: 100%;
+  grid-row: 1;
+  grid-column: 1;
+  background: linear-gradient(135deg, rgba(235,235,235,1) 0%, rgb(123, 122, 122) 61%, rgba(166,166,166,1) 100%);
+  box-shadow: 0px 0px 2px 1px rgba(148,148,148,0.71);
+  border-radius: 25%;
+}
+.background-rectangle {
+  grid-row: 1;
+  grid-column: 1;
+  width: 85%;
+  height: 85%;
+  justify-self: center;
+  align-self: center;
+  background: linear-gradient(45deg, rgb(158, 158, 158) 0%, rgb(247, 247, 247) 100%);
+  box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.3);
+  border-radius: 25%;
+}
+.arc-line {
+  stroke: black;
+  stroke-width: 2px;
+  shape-rendering: geometricPrecision;
+  fill: none;
+}
+.switch-motion-object {
+  opacity: 0;
 }
 </style>

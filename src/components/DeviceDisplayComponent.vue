@@ -146,7 +146,7 @@ export default {
   grid-column: 1;
   height: 65%;
   width: 75%;
-  display: grid;
+  display: inline-block;
   align-self: center;
   justify-self: center;
   border: 0.05rem solid rgba(77,83,79,0.75);

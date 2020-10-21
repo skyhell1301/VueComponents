@@ -1,76 +1,190 @@
 <template>
   <div class="device-container">
     <svg id="line-container-id" class="line-container" height="100%" width="100%">
-      <connection-line-component id_1="7"
-                                 :connection-point_1="{side: 'left', percent: 50}"
-                                 id_2="9"
-                                 :connection-point_2="{side: 'left', percent: 50}"
-                                 :point-edges-array="lineData"
-                                 :active-animation="test"
-                                 :animation-duration="10"
-      >
-      </connection-line-component>
-      <connection-line-component id_1="10"
-                                 :connection-point_1="{side: 'left', percent: 50}"
-                                 id_2="11"
+      <rect width="100%" height="100%" fill="url(#grid)"></rect>
+      <connection-line-component id_1="antenna-system-id"
+                                 :connection-point_1="{side: 'left', percent: 5}"
+                                 id_2="switch-id-1"
                                  :connection-point_2="{side: 'top', percent: 50}"
-                                 :point-edges-array="lineData2"
-                                 :active-animation="test"
+                                 :point-edges-array="lineAntennaSystemToSwitch1"
       >
       </connection-line-component>
+      <connection-line-component id_1="antenna-system-id"
+                                 :connection-point_1="{side: 'left', percent: 20}"
+                                 id_2="switch-id-2"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineAntennaSystemToSwitch2"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="test-translyator-id"
+                                 :connection-point_1="{side: 'left', percent: 50}"
+                                 id_2="switch-id-1"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineTestTranslyatorToSwitch1"
+                                 :active-animation="test"
+                                 :animation-duration="1.5"
+                                 @onComplete="continueAnimation('switch_1')"
+                                 ref="TestTranslyatorToSwitch_1Line"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="test-translyator-id"
+                                 :connection-point_1="{side: 'right', percent: 50}"
+                                 id_2="switch-id-2"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineTestTranslyatorToSwitch2"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="switch-id-1"
+                                 :connection-point_1="{side: 'left', percent: 50}"
+                                 id_2="amplifier-device-1-id"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineSwitch1ToUM1"
+                                 :animation-duration="1.5"
+                                 ref="switch_1ToAmplifier_1Line"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="switch-id-1"
+                                 :connection-point_1="{side: 'left', percent: 50}"
+                                 id_2="amplifier-device-2-id"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineSwitch1ToUM2"
+                                 :animation-duration="1.5"
+                                 ref="switch_1ToAmplifier_2Line"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="switch-id-2"
+                                 :connection-point_1="{side: 'left', percent: 50}"
+                                 id_2="MSHU-device-id-1"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineSwitch1ToUM1"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="switch-id-2"
+                                 :connection-point_1="{side: 'left', percent: 50}"
+                                 id_2="MSHU-device-id-2"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineSwitch1ToUM2"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="amplifier-device-1-id"
+                                 :connection-point_1="{side: 'bottom', percent: 50}"
+                                 id_2="switch-id-3"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineUM1ToSwitch3"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="amplifier-device-2-id"
+                                 :connection-point_1="{side: 'bottom', percent: 50}"
+                                 id_2="switch-id-3"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineUM2ToSwitch3"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="MSHU-device-id-1"
+                                 :connection-point_1="{side: 'bottom', percent: 50}"
+                                 id_2="switch-id-4"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineUM1ToSwitch3"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="MSHU-device-id-2"
+                                 :connection-point_1="{side: 'bottom', percent: 50}"
+                                 id_2="switch-id-4"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineUM2ToSwitch3"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="switch-id-3"
+                                 :connection-point_1="{side: 'left', percent: 50}"
+                                 id_2="up-converter-id-1"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineSwitch1ToUM1"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="switch-id-3"
+                                 :connection-point_1="{side: 'left', percent: 50}"
+                                 id_2="up-converter-id-2"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineSwitch1ToUM2"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="switch-id-4"
+                                 :connection-point_1="{side: 'left', percent: 50}"
+                                 id_2="down-converter-id-1"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineSwitch1ToUM1"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="switch-id-4"
+                                 :connection-point_1="{side: 'left', percent: 50}"
+                                 id_2="down-converter-id-2"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineSwitch1ToUM2"
+      >
+      </connection-line-component>
+      <defs>
+        <pattern id="grid" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(0)">
+          <line x1="0" y1="0" x2="10" y2="0" stroke="#ccc"/>
+          <line x1="0" y1="0" x2="0" y2="10" stroke="#ccc"/>
+        </pattern>
+      </defs>
     </svg>
-    <DeviceDisplayComponent id="7" title-device="АНТЕННАЯ СИСТЕМА" class="antenna-system-device">
-<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
-<!--      <test :device-data="antennaDeviceData"></test>-->
+    <DeviceDisplayComponent id="antenna-system-id" title-device="АНТЕННАЯ СИСТЕМА" class="antenna-system-device" :connection-interface-active="false">
       <DisplayParametersComponent :device-data="antennaDeviceData"></DisplayParametersComponent>
     </DeviceDisplayComponent>
-    <DeviceDisplayComponent id="10" title-device="ТЕСТ-ТРАНСЛЯТОР" class="test-translyator-device">
-<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
-<!--      <test :device-data="antennaDeviceData"></test>-->
-      <DisplayParametersComponent :device-data="testTranslyatorDeviceData"></DisplayParametersComponent>
+    <DeviceDisplayComponent id="test-translyator-id" title-device="ТЕСТ-ТРАНСЛЯТОР" class="test-translyator-device">
+      <DisplayParametersComponent :device-data="testTranslyatorDeviceData">
+        <button style="height: 60%; width: 60%; align-self: center; justify-self: center;" @click="continueAnimation('TestTranslyatorToSwitch_1Line')">Анимация</button>
+      </DisplayParametersComponent>
     </DeviceDisplayComponent>
-    <DeviceDisplayComponent id="11" title-device="УМ #1" class="amplifier-device-1">
-<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
-<!--      <test :device-data="antennaDeviceData"></test>-->
+    <DeviceDisplayComponent id="amplifier-device-1-id" title-device="УМ #1" class="amplifier-device-1">
       <DisplayParametersComponent :device-data="amplifier1DeviceData1"></DisplayParametersComponent>
     </DeviceDisplayComponent>
-    <DeviceDisplayComponent id="8" title-device="УМ #2" class="amplifier-device-2">
-<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
-<!--      <test :device-data="antennaDeviceData"></test>-->
+    <DeviceDisplayComponent id="amplifier-device-2-id" title-device="УМ #2" class="amplifier-device-2">
       <DisplayParametersComponent :device-data="amplifier1DeviceData2"></DisplayParametersComponent>
     </DeviceDisplayComponent>
-    <DeviceDisplayComponent id="9" title-device="МШУ #1" class="MSHU-device-1">
-<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
-<!--      <test :device-data="antennaDeviceData"></test>-->
+    <DeviceDisplayComponent id="MSHU-device-id-1" title-device="МШУ #1" class="MSHU-device-1">
       <DisplayParametersComponent :device-data="MSHUDeviceData1"></DisplayParametersComponent>
     </DeviceDisplayComponent>
-    <DeviceDisplayComponent title-device="МШУ #2" class="MSHU-device-2">
-<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
-<!--      <test :device-data="antennaDeviceData"></test>-->
+    <DeviceDisplayComponent id="MSHU-device-id-2" title-device="МШУ #2" class="MSHU-device-2">
       <DisplayParametersComponent :device-data="MSHUDeviceData2"></DisplayParametersComponent>
     </DeviceDisplayComponent>
-    <DeviceDisplayComponent title-device="КОНВЕРТЕР ВВЕРХ #1" class="up-converter-1">
-<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
-<!--      <test :device-data="antennaDeviceData"></test>-->
+    <DeviceDisplayComponent id="up-converter-id-1" title-device="КОНВЕРТЕР ВВЕРХ #1" class="up-converter-1">
       <DisplayParametersComponent :device-data="upConverterDeviceData1"></DisplayParametersComponent>
     </DeviceDisplayComponent>
-    <DeviceDisplayComponent title-device="КОНВЕРТЕР ВВЕРХ #2" class="up-converter-2">
-<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
-<!--      <test :device-data="antennaDeviceData"></test>-->
+    <DeviceDisplayComponent id="up-converter-id-2" title-device="КОНВЕРТЕР ВВЕРХ #2" class="up-converter-2">
       <DisplayParametersComponent :device-data="upConverterDeviceData2"></DisplayParametersComponent>
     </DeviceDisplayComponent>
-    <DeviceDisplayComponent title-device="КОНВЕРТЕР ВНИЗ #1" class="down-converter-1">
-<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
-<!--      <test :device-data="antennaDeviceData"></test>-->
+    <DeviceDisplayComponent id="down-converter-id-1" title-device="КОНВЕРТЕР ВНИЗ #1" class="down-converter-1">
       <DisplayParametersComponent :device-data="downConverterDeviceData1"></DisplayParametersComponent>
     </DeviceDisplayComponent>
-    <DeviceDisplayComponent title-device="КОНВЕРТЕР ВНИЗ #2" class="down-converter-2">
-<!--      <DeviceDisplayComponent style="width: 100%; height: 100%"></DeviceDisplayComponent>-->
-<!--      <test :device-data="antennaDeviceData"></test>-->
+    <DeviceDisplayComponent id="down-converter-id-2" title-device="КОНВЕРТЕР ВНИЗ #2" class="down-converter-2">
       <DisplayParametersComponent :device-data="downConverterDeviceData2"></DisplayParametersComponent>
     </DeviceDisplayComponent>
-    <SwitchComponent class="switch-1"></SwitchComponent>
-    <input type="checkbox" v-model="test">
+    <DeviceDisplayComponent id="up-matrix-id" title-device="Матрица 8х8 вверх" class="up-matrix">
+      <div style="height: 100px; width: 100%"></div>
+    </DeviceDisplayComponent>
+    <DeviceDisplayComponent id="down-matrix-id" title-device="Матрица 8х8 ввниз" class="down-matrix">
+      <div style="height: 100px; width: 100%"></div>
+    </DeviceDisplayComponent>
+    <SwitchComponent id="switch-id-1" class="switch-1"
+                     @onComplete="continueAnimation('switch_1ToAmplifier_1Line')"
+                     ref="switch_1"
+                     :animation-duration="0.5"
+    >
+    </SwitchComponent>
+    <SwitchComponent id="switch-id-2" class="switch-2"
+                     ref="switch_2"
+    >
+    </SwitchComponent>
+    <SwitchComponent id="switch-id-3" class="switch-3"
+                     ref="switch_3"
+    >
+    </SwitchComponent>
+    <SwitchComponent id="switch-id-4" class="switch-4"
+                     ref="switch_4"
+    >
+    </SwitchComponent>
   </div>
 </template>
 
@@ -111,31 +225,63 @@ export default {
           }],
         title: 'АНТЕННАЯ СИСТЕМА'
       },
-      lineData: [
-        {
-          direction: 'left',
-          value: 5
-        },
-        {
-          direction: 'down',
-          value: 55
-        },
+      lineAntennaSystemToSwitch1: [
         {
           direction: 'left',
           value: 100
-        },
-        {
-          direction: 'down',
-          value: 45
         }
       ],
-      lineData2: [
+      lineAntennaSystemToSwitch2: [
         {
           direction: 'left',
+          value: 100
+        }
+      ],
+      lineTestTranslyatorToSwitch1: [
+        {
+          direction: 'left',
+          value: 100
+        }
+      ],
+      lineTestTranslyatorToSwitch2: [
+        {
+          direction: 'right',
+          value: 100
+        }
+      ],
+      lineSwitch1ToUM1: [
+        {
+          direction: 'left',
+          value: 100
+        }
+      ],
+      lineSwitch1ToUM2: [
+        {
+          direction: 'right',
           value: 100
         },
         {
           direction: 'down',
+          value: 100
+        }
+      ],
+      lineUM1ToSwitch3: [
+        {
+          direction: 'down',
+          value: 50
+        },
+        {
+          direction: 'right',
+          value: 100
+        }
+      ],
+      lineUM2ToSwitch3: [
+        {
+          direction: 'down',
+          value: 50
+        },
+        {
+          direction: 'left',
           value: 100
         }
       ],
@@ -303,6 +449,9 @@ export default {
     SwitchComponent
   },
   methods: {
+    continueAnimation (ref) {
+      this.$refs[ref].startAnimation()
+    },
     getWebSocketData () {
       let context = this
       // Create a new WebSocket.
@@ -342,134 +491,151 @@ export default {
             context.downConverterDeviceData2 = context.inputValue.downConverterDeviceData2
           }
         }
-        // console.log(this.inputValue)
         this.inputValue = JSON.parse(e.data)
       }
     }
   },
   mounted () {
     this.getWebSocketData()
-    // Define the
-    // let message = document.getElementById('message')
-    //
-    // function transmitMessage() {
-    //   socket.send(message.value)
-    // }
   }
 }
 </script>
 
 <style scoped>
-.line-container {
-  z-index: -1;
-  will-change: transform;
-  grid-row-start: 1;
-  grid-row-end: 6;
-  grid-column-start: 1;
-  grid-column-end: 5;
-  background-image: url('../assets/images/svg/grid.svg');
-}
 .device-container {
   z-index: 1;
   grid-column: 2;
   grid-row: 2;
   border: 1px solid black;
   display: grid;
-  grid-template-rows: 20% 20% 20% 20%;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 18% 3% 16% 6% 16% 6% 13%;
+  grid-template-columns: 22% 6% 22% 22% 6% 22%;
   align-self: center;
   justify-self: center;
+  align-items: center;
+  justify-items: center;
   width: 100%;
   height: 100%;
 }
+.line-container {
+  z-index: -1;
+  will-change: transform;
+  grid-row-start: 1;
+  grid-row-end: 6;
+  grid-column-start: 1;
+  grid-column-end: 8;
+ }
 .antenna-system-device {
-  grid-column: 4;
+  grid-column: 6;
   grid-row: 1;
-  width: 80%;
-  height: 80%;
-//justify-self: center;
+  width: 90%;
+  height: 90%;
+  align-self: start;
 }
 .test-translyator-device {
-  grid-column-start: 2;
-  grid-column-end: 4;
+  grid-column-start: 3;
+  grid-column-end: 5;
   grid-row: 1;
   width: 50%;
-  height: 80%;
-  justify-self: center;
-  align-self: center;
+  height: 90%;
+  align-self: end;
 }
 .amplifier-device-1 {
   grid-column: 1;
-  grid-row: 2;
-  width: 80%;
-  height: 80%;
-  justify-self: center;
-  align-self: center;
+  grid-row: 3;
+  width: 90%;
+  height: 100%;
 }
 .amplifier-device-2 {
-  grid-column: 2;
-  grid-row: 2;
-  width: 80%;
-  height: 80%;
-  justify-self: center;
-  align-self: center;
+  grid-column: 3;
+  grid-row: 3;
+  width: 90%;
+  height: 100%;
 }
 .MSHU-device-1 {
-  grid-column: 3;
-  grid-row: 2;
-  width: 80%;
-  height: 80%;
-  justify-self: center;
-  align-self: center;
+  grid-column: 4;
+  grid-row: 3;
+  width: 90%;
+  height: 100%;
 }
 .MSHU-device-2 {
-  grid-column: 4;
-  grid-row: 2;
-  width: 80%;
-  height: 80%;
-  justify-self: center;
-  align-self: center;
+  grid-column: 6;
+  grid-row: 3;
+  width: 90%;
+  height: 100%;
 }
 .up-converter-1 {
   grid-column: 1;
-  grid-row: 3;
-  width: 80%;
-  height: 80%;
-  justify-self: center;
-  align-self: center;
+  grid-row: 5;
+  width: 90%;
+  height: 100%;
 }
 .up-converter-2 {
-  grid-column: 2;
-  grid-row: 3;
-  width: 80%;
-  height: 80%;
-  justify-self: center;
-  align-self: center;
+  grid-column: 3;
+  grid-row: 5;
+  width: 90%;
+  height: 100%;
 }
 .down-converter-1 {
-  grid-column: 3;
-  grid-row: 3;
-  width: 80%;
-  height: 80%;
-  justify-self: center;
-  align-self: center;
+  grid-column: 4;
+  grid-row: 5;
+  width: 90%;
+  height: 100%;
 }
 .down-converter-2 {
-  grid-column: 4;
-  grid-row: 3;
-  width: 80%;
-  height: 80%;
-  justify-self: center;
-  align-self: center;;
+  grid-column: 6;
+  grid-row: 5;
+  width: 90%;
+  height: 100%;
 }
-
+.up-matrix {
+  grid-column: 3;
+  grid-row: 7;
+  height: 100%;
+  width: 70%;
+  justify-self: start;
+  align-self: start;
+}
+.down-matrix {
+  grid-column: 4;
+  grid-row: 7;
+  height: 100%;
+  width: 80%;
+  justify-self: end;
+  align-self: start;
+}
 .switch-1{
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row: 1;
-  width: 20%;
-  height: 50%;
-  align-self: center;
-  justify-self: center;
+  grid-column: 2;
+  grid-row: 2;
+  //width: 100%;
+  //height: 100%;
+  width: 40px;
+  height: 40px;
+}
+.switch-2{
+  grid-column: 5;
+  grid-row: 2;
+//width: 100%;
+//height: 100%;
+  width: 40px;
+  height: 40px;
+}
+.switch-3{
+  grid-column: 2;
+  grid-row: 4;
+//width: 100%;
+//height: 100%;
+  width: 40px;
+  height: 40px;
+  align-self: end;
+}
+.switch-4{
+  grid-column: 5;
+  grid-row: 4;
+//width: 100%;
+//height: 100%;
+  width: 40px;
+  height: 40px;
+  align-self: end;
 }
 </style>
