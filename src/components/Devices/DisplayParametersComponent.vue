@@ -14,7 +14,7 @@
 
 <script>
 import Vue from 'vue'
-import PopUpWindow from './PopUpWindow'
+import PopUpWindow from '../PopUpWindow'
 
 export default {
   name: 'DisplayParametersComponent',
@@ -53,7 +53,6 @@ export default {
         document.getElementById('app').appendChild(popWin.$el)
         this.updateWindowStatus()
       }
-      console.log(this.deviceData)
     },
     reFontSize () {
       this.fz = this.$el.getBoundingClientRect().height * this.fontSizeCoefficient

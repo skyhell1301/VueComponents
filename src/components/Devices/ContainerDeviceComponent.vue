@@ -122,6 +122,97 @@
                                  :point-edges-array="lineSwitch1ToUM2"
       >
       </connection-line-component>
+      <connection-line-component id_1="up-converter-id-1"
+                                 :connection-point_1="{side: 'bottom', percent: 50}"
+                                 id_2="switch-id-5"
+                                 :connection-point_2="{side: 'left', percent: 50}"
+                                 :point-edges-array="lineUpConvertor1ToSwitch5"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="up-converter-id-2"
+                                 :connection-point_1="{side: 'bottom', percent: 50}"
+                                 id_2="switch-id-5"
+                                 :connection-point_2="{side: 'right', percent: 50}"
+                                 :point-edges-array="lineUpConvertor1ToSwitch5"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="down-converter-id-1"
+                                 :connection-point_1="{side: 'bottom', percent: 50}"
+                                 id_2="switch-id-6"
+                                 :connection-point_2="{side: 'right', percent: 50}"
+                                 :point-edges-array="lineUpConvertor1ToSwitch5"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="down-converter-id-2"
+                                 :connection-point_1="{side: 'bottom', percent: 50}"
+                                 id_2="switch-id-6"
+                                 :connection-point_2="{side: 'right', percent: 50}"
+                                 :point-edges-array="lineUpConvertor1ToSwitch5"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="switch-id-5"
+                                 :connection-point_1="{side: 'bottom', percent: 50}"
+                                 id_2="up-matrix-id"
+                                 :connection-point_2="{side: 'left', percent: 50}"
+                                 :point-edges-array="lineUpConvertor1ToSwitch5"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="switch-id-6"
+                                 :connection-point_1="{side: 'bottom', percent: 50}"
+                                 id_2="down-matrix-id"
+                                 :connection-point_2="{side: 'bottom', percent: 80}"
+                                 :point-edges-array="lineSwitch6ToDownMatrix"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="up-matrix-id"
+                                 :connection-point_1="{side: 'bottom', percent: 20}"
+                                 id_2="cortex-id-1"
+                                 :connection-point_2="{side: 'top', percent: 35}"
+                                 :point-edges-array="lineUpMatrixToCortex1"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="up-matrix-id"
+                                 :connection-point_1="{side: 'bottom', percent: 80}"
+                                 id_2="cortex-id-2"
+                                 :connection-point_2="{side: 'top', percent: 35}"
+                                 :point-edges-array="lineUpMatrixToCortex2"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="down-matrix-id"
+                                 :connection-point_1="{side: 'left', percent: 45}"
+                                 id_2="cortex-id-1"
+                                 :connection-point_2="{side: 'top', percent: 65}"
+                                 :point-edges-array="lineDownMatrixToCortex1"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="down-matrix-id"
+                                 :connection-point_1="{side: 'left', percent: 55}"
+                                 id_2="cortex-id-2"
+                                 :connection-point_2="{side: 'top', percent: 65}"
+                                 :point-edges-array="lineDownMatrixToCortex2"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="down-matrix-id"
+                                 :connection-point_1="{side: 'left', percent: 65}"
+                                 id_2="spectrum-analyzer-id"
+                                 :connection-point_2="{side: 'top', percent: 50}"
+                                 :point-edges-array="lineDownMatrixToSpectrumAnalyser"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="down-matrix-id"
+                                 :connection-point_1="{side: 'left', percent: 75}"
+                                 id_2="as-stoyka-id"
+                                 :connection-point_2="{side: 'bottom', percent: 50}"
+                                 :point-edges-array="lineDownMatrixToASStoyka"
+      >
+      </connection-line-component>
+      <connection-line-component id_1="down-matrix-id"
+                                 :connection-point_1="{side: 'left', percent: 35}"
+                                 id_2="down-matrix-id"
+                                 :connection-point_2="{side: 'bottom', percent: 35}"
+                                 :point-edges-array="lineDownMatrixToDownMatrix"
+      >
+      </connection-line-component>
       <defs>
         <pattern id="grid" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(0)">
           <line x1="0" y1="0" x2="10" y2="0" stroke="#ccc"/>
@@ -167,6 +258,18 @@
     <DeviceDisplayComponent id="down-matrix-id" title-device="Матрица 8х8 ввниз" class="down-matrix">
       <div style="height: 100px; width: 100%"></div>
     </DeviceDisplayComponent>
+    <DeviceDisplayComponent id="cortex-id-1" title-device="Cortex #1" class="cortex-1">
+      <div style="height: 100px; width: 100%"></div>
+    </DeviceDisplayComponent>
+    <DeviceDisplayComponent id="cortex-id-2" title-device="Cortex #2" class="cortex-2">
+      <div style="height: 100px; width: 100%"></div>
+    </DeviceDisplayComponent>
+    <DeviceDisplayComponent id="spectrum-analyzer-id" title-device="Анализатор спектра" class="spectrum-analyzer">
+      <SpectrumAnalyserDisplayComponent/>
+    </DeviceDisplayComponent>
+    <DeviceDisplayComponent id="as-stoyka-id" title-device="К стойке АС" class="as-stoyka">
+      <div style="height: 100px; width: 100%"></div>
+    </DeviceDisplayComponent>
     <SwitchComponent id="switch-id-1" class="switch-1"
                      @onComplete="continueAnimation('switch_1ToAmplifier_1Line')"
                      ref="switch_1"
@@ -185,15 +288,31 @@
                      ref="switch_4"
     >
     </SwitchComponent>
+    <SwitchComponent id="switch-id-5" class="switch-5"
+                     ref="switch_5"
+    >
+    </SwitchComponent>
+    <SwitchComponent id="switch-id-6" class="switch-6"
+                     ref="switch_6"
+    >
+    </SwitchComponent>
+    <GroundComponent class="ground-component-1"></GroundComponent>
+    <GroundComponent class="ground-component-2"></GroundComponent>
+    <GroundComponent class="ground-component-3"></GroundComponent>
+    <GroundComponent class="ground-component-4"></GroundComponent>
+    <GroundComponent class="ground-component-5" :rotate-angle="180"></GroundComponent>
+    <GroundComponent class="ground-component-6" :rotate-angle="180"></GroundComponent>
   </div>
 </template>
 
 <script>
-import PopUpWindow from './PopUpWindow'
+import PopUpWindow from '../PopUpWindow'
 import DeviceDisplayComponent from './DeviceDisplayComponent'
 import ConnectionLineComponent from './ConnectionLineComponent'
 import DisplayParametersComponent from './DisplayParametersComponent'
 import SwitchComponent from './SwitchComponent'
+import GroundComponent from './GroundComponent'
+import SpectrumAnalyserDisplayComponent from './SpectrumAnalyserDisplayComponent'
 
 export default {
   name: 'ContainerDeviceComponent',
@@ -228,61 +347,265 @@ export default {
       lineAntennaSystemToSwitch1: [
         {
           direction: 'left',
+          isArc: false,
           value: 100
         }
       ],
       lineAntennaSystemToSwitch2: [
         {
           direction: 'left',
+          isArc: false,
           value: 100
         }
       ],
       lineTestTranslyatorToSwitch1: [
         {
           direction: 'left',
+          isArc: false,
           value: 100
         }
       ],
       lineTestTranslyatorToSwitch2: [
         {
           direction: 'right',
+          isArc: false,
           value: 100
         }
       ],
       lineSwitch1ToUM1: [
         {
           direction: 'left',
+          isArc: false,
           value: 100
         }
       ],
       lineSwitch1ToUM2: [
         {
           direction: 'right',
+          isArc: false,
           value: 100
         },
         {
           direction: 'down',
+          isArc: false,
           value: 100
         }
       ],
       lineUM1ToSwitch3: [
         {
           direction: 'down',
+          isArc: false,
           value: 50
         },
         {
           direction: 'right',
+          isArc: false,
           value: 100
         }
       ],
       lineUM2ToSwitch3: [
         {
           direction: 'down',
+          isArc: false,
           value: 50
         },
         {
           direction: 'left',
+          isArc: false,
           value: 100
+        }
+      ],
+      lineUpConvertor1ToSwitch5: [
+        {
+          direction: 'down',
+          isArc: false,
+          value: 100
+        }
+      ],
+      lineSwitch6ToDownMatrix: [
+        {
+          direction: 'down',
+          isArc: false,
+          value: 105
+        },
+        {
+          direction: 'left',
+          isArc: false,
+          value: 100
+        },
+        {
+          direction: 'up',
+          isArc: false,
+          value: 5
+        }
+      ],
+      lineUpMatrixToCortex1: [
+        {
+          direction: 'down',
+          isArc: false,
+          value: 30
+        },
+        {
+          direction: 'left',
+          isArc: false,
+          value: 100
+        },
+        {
+          direction: 'down',
+          isArc: false,
+          value: 70
+        }
+      ],
+      lineUpMatrixToCortex2: [
+        {
+          direction: 'down',
+          isArc: false,
+          value: 30
+        },
+        {
+          direction: 'right',
+          isArc: false,
+          value: 44
+        },
+        {
+          direction: 'right',
+          isArc: true,
+          value: 11
+        },
+        {
+          direction: 'right',
+          isArc: false,
+          value: 45
+        }
+      ],
+      lineDownMatrixToCortex1: [
+        {
+          direction: 'left',
+          isArc: false,
+          value: 18
+        },
+        {
+          direction: 'left',
+          isArc: true,
+          value: 3
+        },
+        {
+          direction: 'left',
+          isArc: false,
+          value: 19
+        },
+        {
+          direction: 'down',
+          isArc: false,
+          value: 85
+        },
+        {
+          direction: 'left',
+          isArc: false,
+          value: 60
+        },
+        {
+          direction: 'down',
+          isArc: false,
+          value: 15
+        }
+      ],
+      lineDownMatrixToCortex2: [
+        {
+          direction: 'left',
+          isArc: false,
+          value: 300
+        },
+        {
+          direction: 'down',
+          isArc: false,
+          value: 90
+        },
+        {
+          direction: 'right',
+          isArc: false,
+          value: 400
+        }
+      ],
+      lineDownMatrixToSpectrumAnalyser: [
+        {
+          direction: 'left',
+          isArc: false,
+          value: 12
+        },
+        {
+          direction: 'down',
+          isArc: false,
+          value: 76
+        },
+        {
+          direction: 'right',
+          isArc: false,
+          value: 112
+        }
+      ],
+      lineDownMatrixToASStoyka: [
+        {
+          direction: 'left',
+          isArc: false,
+          value: 5.5
+        },
+        {
+          direction: 'down',
+          isArc: false,
+          value: 260
+        },
+        {
+          direction: 'right',
+          isArc: false,
+          value: 105.5
+        }
+      ],
+      lineDownMatrixToDownMatrix: [
+        {
+          direction: 'left',
+          isArc: false,
+          value: 150
+        },
+        {
+          direction: 'down',
+          isArc: false,
+          value: 107
+        },
+        {
+          direction: 'right',
+          isArc: false,
+          value: 32
+        },
+        {
+          direction: 'right',
+          isArc: true,
+          value: 20
+        },
+        {
+          direction: 'right',
+          isArc: false,
+          value: 18
+        },
+        {
+          direction: 'right',
+          isArc: true,
+          value: 20
+        },
+        {
+          direction: 'right',
+          isArc: false,
+          value: 18
+        },
+        {
+          direction: 'right',
+          isArc: true,
+          value: 20
+        },
+        {
+          direction: 'right',
+          isArc: false,
+          value: 122
         }
       ],
       testTranslyatorDeviceData: {
@@ -442,6 +765,8 @@ export default {
     }
   },
   components: {
+    SpectrumAnalyserDisplayComponent,
+    GroundComponent,
     PopUpWindow,
     DeviceDisplayComponent,
     ConnectionLineComponent,
@@ -508,7 +833,7 @@ export default {
   grid-row: 2;
   border: 1px solid black;
   display: grid;
-  grid-template-rows: 18% 3% 16% 6% 16% 6% 13%;
+  grid-template-rows: 15% 5% 15% 10% 15% 3% 12% 5% 20%;
   grid-template-columns: 22% 6% 22% 22% 6% 22%;
   align-self: center;
   justify-self: center;
@@ -521,7 +846,7 @@ export default {
   z-index: -1;
   will-change: transform;
   grid-row-start: 1;
-  grid-row-end: 6;
+  grid-row-end: 10;
   grid-column-start: 1;
   grid-column-end: 8;
  }
@@ -567,32 +892,33 @@ export default {
 .up-converter-1 {
   grid-column: 1;
   grid-row: 5;
-  width: 90%;
+  width: 80%;
   height: 100%;
 }
 .up-converter-2 {
   grid-column: 3;
   grid-row: 5;
-  width: 90%;
+  width: 80%;
   height: 100%;
 }
 .down-converter-1 {
   grid-column: 4;
   grid-row: 5;
-  width: 90%;
+  width: 80%;
   height: 100%;
 }
 .down-converter-2 {
   grid-column: 6;
   grid-row: 5;
-  width: 90%;
+  width: 80%;
   height: 100%;
 }
 .up-matrix {
   grid-column: 3;
   grid-row: 7;
   height: 100%;
-  width: 70%;
+  width: 60%;
+  font-size: 8px;
   justify-self: start;
   align-self: start;
 }
@@ -600,42 +926,126 @@ export default {
   grid-column: 4;
   grid-row: 7;
   height: 100%;
-  width: 80%;
+  width: 60%;
   justify-self: end;
   align-self: start;
 }
+.cortex-1 {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row: 9;
+  height: 95%;
+  width: 66%;
+  margin-left: 3%;
+  justify-self: start;
+  align-self: start;
+}
+.cortex-2 {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row: 9;
+  height: 95%;
+  width: 75%;
+  justify-self: end;
+  align-self: start;
+}
+.spectrum-analyzer {
+  grid-column-start: 5;
+  grid-column-end: 8;
+  grid-row: 9;
+  height: 70%;
+  width: 75%;
+  justify-self: center;
+  align-self: start;
+}
+.as-stoyka {
+  grid-column: 6;
+  grid-row: 7;
+  height: 80%;
+  width: 50%;
+  align-self: start;
+  justify-self: start;
+  margin-left: 11%;
+  margin-top: 5%;
+}
+
 .switch-1{
   grid-column: 2;
   grid-row: 2;
-  //width: 100%;
-  //height: 100%;
-  width: 40px;
-  height: 40px;
+  align-self: end;
+  height: 30px;
+  width: 30px;
 }
 .switch-2{
   grid-column: 5;
   grid-row: 2;
-//width: 100%;
-//height: 100%;
-  width: 40px;
-  height: 40px;
+  align-self: end;
+  width: 30px;
+  height: 30px;
 }
 .switch-3{
   grid-column: 2;
   grid-row: 4;
-//width: 100%;
-//height: 100%;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   align-self: end;
 }
 .switch-4{
   grid-column: 5;
   grid-row: 4;
-//width: 100%;
-//height: 100%;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   align-self: end;
 }
+.switch-5{
+  grid-column: 2;
+  grid-row: 6;
+  width: 30px;
+  height: 30px;
+  align-self: start;
+}
+.switch-6{
+  grid-column: 5;
+  grid-row: 6;
+  width: 30px;
+  height: 30px;
+  align-self: start;
+}
+.ground-component-1 {
+  grid-column: 2;
+  grid-row: 3;
+  align-self: start;
+  width: 30px;
+}
+.ground-component-2 {
+  grid-column: 5;
+  grid-row: 3;
+  align-self: start;
+  width: 30px;
+}
+.ground-component-3 {
+  grid-column: 2;
+  grid-row: 5;
+  align-self: start;
+  width: 30px;
+}
+.ground-component-4 {
+  grid-column: 5;
+  grid-row: 5;
+  align-self: start;
+  width: 30px;
+}
+.ground-component-5 {
+  grid-column: 2;
+  grid-row: 5;
+  align-self: end;
+  width: 30px;
+}
+.ground-component-6 {
+  grid-column: 5;
+  grid-row: 5;
+  align-self: end;
+  width: 30px;
+}
+
 </style>

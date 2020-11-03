@@ -45,6 +45,10 @@ export default {
     id_2: {
       type: String
     },
+    repeatActive: {
+      type: Boolean,
+      default: false
+    },
     // (точка соединения объекта) connectionPoint = {side: 'left', percent: 50}
     // side - сторона (left, top, right, bottom)
     // percent - процент от длины стороны
@@ -140,58 +144,52 @@ export default {
       this.deltaX = Math.abs(this.x1 - this.x2)
       this.deltaY = Math.abs(this.y1 - this.y2)
     },
-    getStraightLineEquation () {
-      let p1 = 'M10 10 L 100 100 L 200 200'
-      let p2 = 'M100 10 L 10 100'
-      const {ShapeInfo, Intersection} = require('kld-intersections')
-      const path1 = ShapeInfo.path(p1)
-      const path2 = ShapeInfo.path(p2)
-      const intersections = Intersection.intersect(path1, path2)
-      let x1 = path1.args[0].args[0].x
-      let y1 = path1.args[0].args[0].y
-      let x2 = path1.args[0].args[1].x
-      let y2 = path1.args[0].args[1].y
-      let k = (y1 - y2) / (x1 - x2)
-      let b = y2 - k * x2
-      for (let i = 0; i <= x2; i++) {
-      }
-      console.log('y = ' + k + 'x + ' + b)
-      console.log(intersections)
-    },
     createPathLine () {
       this.coordinateArray = []
       this.coordinateArray.push({x: this.x1, y: this.y1})
       this.pathForLine = 'M' + this.x1 + ' ' + this.y1
       let x = this.x1
       let y = this.y1
+      let r
       for (let point of this.pointEdgesArray) {
         switch (point.direction) {
           case 'left': {
             x -= point.value / 100 * this.deltaX
+            r = Math.abs(x - this.coordinateArray[this.coordinateArray.length - 1].x)
             break
           }
           case 'up': {
             y -= point.value / 100 * this.deltaY
+            r = Math.abs(y - this.coordinateArray[this.coordinateArray.length - 1].y)
             break
           }
           case 'down': {
             y += point.value / 100 * this.deltaY
+            r = Math.abs(y - this.coordinateArray[this.coordinateArray.length - 1].y)
             break
           }
           case 'right': {
             x += point.value / 100 * this.deltaX
+            r = Math.abs(x - this.coordinateArray[this.coordinateArray.length - 1].x)
             break
           }
         }
-        this.coordinateArray.push({x: x, y: y})
-        this.pathForLine += ' L ' + x + ' ' + y
+        r /= 2
+        if (point.isArc) {
+          this.coordinateArray.push({x: x, y: y})
+          this.pathForLine += ' A' + r + ',' + r + ', 0 0 1 ' + x + ',' + y
+        } else {
+          this.coordinateArray.push({x: x, y: y})
+          this.pathForLine += ' L ' + x + ' ' + y
+        }
       }
       this.coordinateArray.push({x: this.x2, y: this.y2})
       this.pathForLine += ' L ' + this.x2 + ' ' + this.y2
     },
     startAnimation () {
+      let rep = this.repeatActive ? -1 : 0
       gsap.set('#' + this.ID, {xPercent: -50, yPercent: -50, transformOrigin: '50% 50%', opacity: 1})
-      let move = gsap.to('#' + this.ID, {duration: this.animationDuration, repeat: 0, motionPath: this.pathForLine, ease: 'linear'})
+      let move = gsap.to('#' + this.ID, {duration: this.animationDuration, repeat: rep, motionPath: this.pathForLine, ease: 'linear'})
       move.eventCallback('onComplete', this.endAnimation)
     },
     stopAnimation () {

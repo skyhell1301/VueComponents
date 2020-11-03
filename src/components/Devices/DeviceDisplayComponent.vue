@@ -79,32 +79,32 @@ export default {
 <style scoped>
 @media (max-width: 1920px) {
   .wrapper_device-display-component {
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 @media (max-width: 1730px) {
   .wrapper_device-display-component {
-    font-size: 12px;
+    font-size: 10px;
   }
 }
 @media (max-width: 1550px) {
   .wrapper_device-display-component {
-    font-size: 11px;
+    font-size: 9px;
   }
 }
 @media (max-width: 1500px) {
   .wrapper_device-display-component {
-    font-size: 10px;
+    font-size: 8px;
   }
 }
 @media (max-width: 1300px) {
   .wrapper_device-display-component {
-    font-size: 8px;
+    font-size: 6px;
   }
 }
 @media (max-width: 1100px) {
   .wrapper_device-display-component {
-    font-size: 7px;
+    font-size: 5px;
   }
 }
 .wrapper_device-display-component {
@@ -145,7 +145,7 @@ export default {
   grid-row: 1;
   grid-column: 1;
   height: 65%;
-  width: 75%;
+  width: 80%;
   display: inline-block;
   align-self: center;
   justify-self: center;

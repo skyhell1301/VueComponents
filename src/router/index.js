@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 // Components
-import ContainerDeviceComponent from '../components/ContainerDeviceComponent'
+import ContainerDeviceComponent from '../components/Devices/ContainerDeviceComponent'
 
 Vue.use(VueRouter, ContainerDeviceComponent)
 

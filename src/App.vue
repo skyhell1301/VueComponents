@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ContainerDeviceComponent from './components/ContainerDeviceComponent'
+import ContainerDeviceComponent from './components/Devices/ContainerDeviceComponent'
 export default {
   name: 'App',
   components: {
