@@ -1,14 +1,18 @@
 <template>
   <div id="app">
-    <ContainerDeviceComponent></ContainerDeviceComponent>
+    <ContainerDeviceComponent class="container-device"></ContainerDeviceComponent>
+    <ContainerControlAndIndicationComponent class="container-control-and-indication"></ContainerControlAndIndicationComponent>
   </div>
 </template>
 
 <script>
 import ContainerDeviceComponent from './components/Devices/ContainerDeviceComponent'
+import ContainerControlAndIndicationComponent
+  from './components/ControlAndIndication/ContainerControlAndIndicationComponent'
 export default {
   name: 'App',
   components: {
+    ContainerControlAndIndicationComponent,
     ContainerDeviceComponent
   }
 }
@@ -37,5 +41,16 @@ body {
   width: 100%;
   height: 100%;
   border: 1px solid black;
+}
+
+.container-device {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.container-control-and-indication {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column: 3;
 }
 </style>

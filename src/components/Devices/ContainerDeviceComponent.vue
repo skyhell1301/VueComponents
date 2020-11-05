@@ -267,9 +267,7 @@
     <DeviceDisplayComponent id="spectrum-analyzer-id" title-device="Анализатор спектра" class="spectrum-analyzer">
       <SpectrumAnalyserDisplayComponent/>
     </DeviceDisplayComponent>
-    <DeviceDisplayComponent id="as-stoyka-id" title-device="К стойке АС" class="as-stoyka">
-      <div style="height: 100px; width: 100%"></div>
-    </DeviceDisplayComponent>
+    <StandAntannaSystemComponent id="as-stoyka-id" class="as-stoyka"></StandAntannaSystemComponent>
     <SwitchComponent id="switch-id-1" class="switch-1"
                      @onComplete="continueAnimation('switch_1ToAmplifier_1Line')"
                      ref="switch_1"
@@ -313,6 +311,7 @@ import DisplayParametersComponent from './DisplayParametersComponent'
 import SwitchComponent from './SwitchComponent'
 import GroundComponent from './GroundComponent'
 import SpectrumAnalyserDisplayComponent from './SpectrumAnalyserDisplayComponent'
+import StandAntannaSystemComponent from './StandAntannaSystemComponent'
 
 export default {
   name: 'ContainerDeviceComponent',
@@ -765,6 +764,7 @@ export default {
     }
   },
   components: {
+    StandAntannaSystemComponent,
     SpectrumAnalyserDisplayComponent,
     GroundComponent,
     PopUpWindow,
@@ -829,8 +829,6 @@ export default {
 <style scoped>
 .device-container {
   z-index: 1;
-  grid-column: 2;
-  grid-row: 2;
   border: 1px solid black;
   display: grid;
   grid-template-rows: 15% 5% 15% 10% 15% 3% 12% 5% 20%;
@@ -962,11 +960,11 @@ export default {
   grid-column: 6;
   grid-row: 7;
   height: 80%;
-  width: 50%;
+  width: 45%;
   align-self: start;
   justify-self: start;
-  margin-left: 11%;
-  margin-top: 5%;
+  margin-left: 13%;
+  margin-top: 3%;
 }
 
 .switch-1{
