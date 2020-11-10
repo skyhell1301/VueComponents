@@ -1,6 +1,17 @@
 <template>
   <g class="connect-line-component" id="connect-line-component-id">
-    <path :d="pathForLine" class="path-line"/>
+    <filter id="dropshadow" height="130%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/> <!-- stdDeviation is how much to blur -->
+      <feOffset dx="0" dy="0" result="offsetblur"/> <!-- how much to offset -->
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/> <!-- slope is the opacity of the shadow -->
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/> <!-- this contains the offset blurred image -->
+        <feMergeNode in="SourceGraphic"/> <!-- this contains the element that the filter is applied to -->
+      </feMerge>
+    </filter>
+    <path filter="url(#dropshadow)" :d="pathForLine" class="path-line"/>
     <circle :id="ID" class="motion-object" style="fill: rgba(134, 218, 82, 0.9);" cx="4" cy="4" r="4"></circle>
   </g>
 </template>
