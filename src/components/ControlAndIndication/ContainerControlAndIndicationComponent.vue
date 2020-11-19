@@ -1,15 +1,27 @@
 <template>
   <div class="container-control-and-indication">
     <iframe class="clock" src="http://10.10.0.16/clock/index.html"></iframe>
+<!--    <iframe class="clock" src="http://localhost:8080/#/clock"></iframe>-->
     <div class="crash">
       <div class="crash-title">АВАРИЯ</div>
       <ButtonComponent class="btn-1"></ButtonComponent>
       <EmergencySignalComponent class="signal-bell" status="ok"></EmergencySignalComponent>
     </div>
-    <div class="ZS">
-      <div class="ZS-title">ЗЕМНАЯ СТАНЦИЯ</div>
-      <ButtonComponent class="btn-2" @btnClick="test1"></ButtonComponent>
+    <ControlPanelComponent></ControlPanelComponent>
+    <div class="control-background">
+      <div class="ind-title">ЗЕМНАЯ СТАНЦИЯ</div>
+      <ButtonComponent class="btn-2" @btnClick="testVar1=!testVar1"></ButtonComponent>
       <StatusIndicatorComponent class="ind-1" :is-active="testVar1"></StatusIndicatorComponent>
+    </div>
+    <div class="control-background">
+      <div class="ind-title">БОРТОВАЯ ТЕЛЕМЕТРИЯ</div>
+      <ButtonComponent class="btn-2" @btnClick="testVar2=!testVar2"></ButtonComponent>
+      <StatusIndicatorComponent class="ind-1" :is-active="testVar2"></StatusIndicatorComponent>
+    </div>
+    <div class="control-background">
+      <div class="ind-title">АНТЕННАЯ СИСТЕМА</div>
+      <ButtonComponent class="btn-2" @btnClick="testVar3=!testVar3"></ButtonComponent>
+      <StatusIndicatorComponent class="ind-1" :is-active="testVar3"></StatusIndicatorComponent>
     </div>
   </div>
 </template>
@@ -18,18 +30,18 @@
 import ButtonComponent from './ButtonComponent'
 import EmergencySignalComponent from './EmergencySignalComponent'
 import StatusIndicatorComponent from './StatusIndicatorComponent'
+import ControlPanelComponent from './ControlPanelComponent'
 export default {
   name: 'ContainerControlAndIndicationComponent',
-  components: {StatusIndicatorComponent, EmergencySignalComponent, ButtonComponent},
+  components: {ControlPanelComponent, StatusIndicatorComponent, EmergencySignalComponent, ButtonComponent},
   data () {
     return {
-      testVar1: false
+      testVar1: false,
+      testVar2: false,
+      testVar3: false
     }
   },
   methods: {
-    test1: function (kek) {
-      this.testVar1 = !this.testVar1
-    }
   }
 }
 </script>
@@ -43,6 +55,7 @@ export default {
   grid-template-rows: 7% 10% 13% 10% 10% 10% 30% 13% 7%;
   justify-items: center;
   align-items: center;
+  font-weight: bold;
 }
 .clock {
   width: 95%;
@@ -55,10 +68,11 @@ export default {
   grid-template-columns: 45% 55%;
   grid-template-rows: 20% 80%;
   width: 95%;
-  height: 100%;
+  height: 95%;
   border: 1px black solid;
   border-radius: 7px;
-  background: linear-gradient(45deg, #f6f1f5 0%, #fcf7fb 100%);
+  //background: linear-gradient(45deg, #f6f1f5 0%, #fcf7fb 100%);
+  background: linear-gradient(180deg, #f6f1f5 0%, #f6f1f5 40%, #e2e2e1 50%, #fcf7fb 100%);
 }
 
 .btn-1 {
@@ -85,16 +99,15 @@ export default {
   width: 100%;
   font-weight: bold;
 }
-.ZS {
+.control-background {
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 30% 70%;
-  grid-row: 4;
   width: 95%;
-  height: 100%;
+  height: 95%;
   border: 1px black solid;
   border-radius: 7px;
-  background: linear-gradient(45deg, #f6f1f5 0%, #fcf7fb 100%);
+  background: linear-gradient(180deg, #f6f1f5 0%, #f6f1f5 40%, #e2e2e1 50%, #fcf7fb 100%);
 }
 
 .btn-2 {
@@ -111,12 +124,11 @@ export default {
   height: 98%;
 }
 
-.ZS-title {
+.ind-title {
   grid-column-start: 1;
   grid-column-end: 3;
   justify-self: center;
   align-self: center;
   width: 100%;
-  font-weight: bold;
 }
 </style>

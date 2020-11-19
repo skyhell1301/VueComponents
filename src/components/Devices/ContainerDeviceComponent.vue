@@ -255,7 +255,7 @@
     <DeviceDisplayComponent id="up-matrix-id" title-device="Матрица 8х8 вверх" class="up-matrix">
       <div style="height: 100px; width: 100%"></div>
     </DeviceDisplayComponent>
-    <DeviceDisplayComponent id="down-matrix-id" title-device="Матрица 8х8 ввниз" class="down-matrix">
+    <DeviceDisplayComponent id="down-matrix-id" title-device="Матрица 8х8 вниз" class="down-matrix">
       <div style="height: 100px; width: 100%"></div>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent id="cortex-id-1" title-device="Cortex #1" class="cortex-1">
