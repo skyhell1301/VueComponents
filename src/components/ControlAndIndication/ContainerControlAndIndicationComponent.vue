@@ -23,6 +23,9 @@
       <ButtonComponent class="btn-2" @btnClick="testVar3=!testVar3"></ButtonComponent>
       <StatusIndicatorComponent class="ind-1" :is-active="testVar3"></StatusIndicatorComponent>
     </div>
+    <ConnectPanelComponent></ConnectPanelComponent>
+    <TargetDesignationPanelComponent></TargetDesignationPanelComponent>
+    <ProtocolButtonComponent></ProtocolButtonComponent>
   </div>
 </template>
 
@@ -31,9 +34,20 @@ import ButtonComponent from './ButtonComponent'
 import EmergencySignalComponent from './EmergencySignalComponent'
 import StatusIndicatorComponent from './StatusIndicatorComponent'
 import ControlPanelComponent from './ControlPanelComponent'
+import ConnectPanelComponent from './ConnectPanelComponent'
+import TargetDesignationPanelComponent from './TargetDesignationPanelComponent'
+import ProtocolButtonComponent from './ProtocolButtonComponent'
 export default {
   name: 'ContainerControlAndIndicationComponent',
-  components: {ControlPanelComponent, StatusIndicatorComponent, EmergencySignalComponent, ButtonComponent},
+  components: {
+    ProtocolButtonComponent,
+    TargetDesignationPanelComponent,
+    ConnectPanelComponent,
+    ControlPanelComponent,
+    StatusIndicatorComponent,
+    EmergencySignalComponent,
+    ButtonComponent
+  },
   data () {
     return {
       testVar1: false,
@@ -52,7 +66,7 @@ export default {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-rows: 7% 10% 13% 10% 10% 10% 30% 13% 7%;
+  grid-template-rows: 7% 10% 15% 8% 8% 8% 30% 10% 4%;
   justify-items: center;
   align-items: center;
   font-weight: bold;

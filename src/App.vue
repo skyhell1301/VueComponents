@@ -32,7 +32,7 @@ body {
   text-align: center;
   color: #2c3e50;
   display: grid;
-  grid-template-columns: 25% 60% 15%;
+  grid-template-columns: 28% 60% 12%;
   grid-template-rows: 10% 90%;
   //max-width: calc(100vh * 16 / 10);
   max-height: calc(100vw * 10 / 16);

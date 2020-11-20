@@ -133,12 +133,18 @@ export default {
       let pos4 = 0
       const _window = this.getThisWindowAndHeaderElements().window
       const _windowHeader = this.getThisWindowAndHeaderElements().windowHeader
+      const _rectangle = this.getThisWindowAndHeaderElements().rectangle
+      _rectangle.style.left = '0px'
+      _rectangle.style.top = '0px'
       _windowHeader.onmousedown = dragMouseDown
 
       function dragMouseDown (e) {
         // get the mouse cursor position at startup:
         pos3 = e.clientX
         pos4 = e.clientY
+        context.heightCloseRectangle = context.heightWindow
+        context.widthCloseRectangle = context.widthWindow
+        // context.isCloseRectangleActive = true
         document.onmouseup = closeDragElement
         // call a function whenever the cursor moves:
         document.onmousemove = elementDrag
@@ -154,6 +160,7 @@ export default {
         // set the element's new position:
         if (_window.offsetTop < (window.innerHeight - 35)) {
           _window.style.top = (_window.offsetTop - pos2) + 'px'
+          // _window.style.transform = 'translateY(' + -pos2 + 'px)'
         } else {
           context.centerWindow()
         }
@@ -171,6 +178,7 @@ export default {
       }
 
       function closeDragElement () {
+        context.isCloseRectangleActive = false
         //  stop moving when mouse button is released:
         document.onmouseup = null
         document.onmousemove = null
