@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <NavMenuComponent class="container-nav-menu"></NavMenuComponent>
     <ContainerDeviceComponent class="container-device"></ContainerDeviceComponent>
     <ContainerControlAndIndicationComponent class="container-control-and-indication"></ContainerControlAndIndicationComponent>
   </div>
@@ -9,9 +10,11 @@
 import ContainerDeviceComponent from './components/Devices/ContainerDeviceComponent'
 import ContainerControlAndIndicationComponent
   from './components/ControlAndIndication/ContainerControlAndIndicationComponent'
+import NavMenuComponent from './components/Menu/NavMenuComponent'
 export default {
   name: 'App',
   components: {
+    NavMenuComponent,
     ContainerControlAndIndicationComponent,
     ContainerDeviceComponent
   }
@@ -33,7 +36,7 @@ body {
   color: #2c3e50;
   display: grid;
   grid-template-columns: 28% 60% 12%;
-  grid-template-rows: 10% 90%;
+  grid-template-rows: 7% 86% 7%;
   //max-width: calc(100vh * 16 / 10);
   max-height: calc(100vw * 10 / 16);
   min-width: 1000px;
@@ -50,7 +53,13 @@ body {
 
 .container-control-and-indication {
   grid-row-start: 1;
-  grid-row-end: 3;
+  grid-row-end: 4;
   grid-column: 3;
+}
+
+.container-nav-menu {
+  grid-row: 1;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 </style>
