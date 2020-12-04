@@ -36,7 +36,7 @@ body {
   color: #2c3e50;
   display: grid;
   grid-template-columns: 28% 60% 12%;
-  grid-template-rows: 7% 86% 7%;
+  grid-template-rows: 5% 90% 5%;
   //max-width: calc(100vh * 16 / 10);
   max-height: calc(100vw * 10 / 16);
   min-width: 1000px;
@@ -49,17 +49,20 @@ body {
 .container-device {
   grid-column: 2;
   grid-row: 2;
+  z-index: 1;
 }
 
 .container-control-and-indication {
   grid-row-start: 1;
   grid-row-end: 4;
   grid-column: 3;
+  z-index: 1;
 }
 
 .container-nav-menu {
   grid-row: 1;
   grid-column-start: 1;
   grid-column-end: 3;
+  z-index: 2;
 }
 </style>
