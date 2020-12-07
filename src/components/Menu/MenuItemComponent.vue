@@ -1,19 +1,20 @@
 <template>
-  <div class="menu-item-container">
+  <div class="menu-item-container" v-click-outside="contentClose">
     <div :class="{'content-open': contentOpen}" class="title-menu-item-container" @click="clickMenuItem">
       <div class="title-menu-item">
         {{titleMenuItem}}
       </div>
     </div>
     <transition name="menu-content-animation">
-    <div v-show="contentOpen" class="content-menu-item">
-      <slot></slot>
-    </div>
+      <div v-show="contentOpen" class="content-menu-item" @click="contentClose">
+        <slot></slot>
+      </div>
     </transition>
   </div>
 </template>
 
 <script>
+import ClickOutside from 'vue-click-outside'
 export default {
   name: 'MenuItemComponent',
   data () {
@@ -39,10 +40,10 @@ export default {
   },
   methods: {
     clickMenuItem () {
-      this.$emit('clickMenuItem', this.MenuItemId)
       this.contentOpen = !this.contentOpen
     },
-    closeContent () {
+    contentClose () {
+      this.contentOpen = false
     }
   },
   watch: {
@@ -51,6 +52,9 @@ export default {
         this.contentOpen = false
       }
     }
+  },
+  directives: {
+    ClickOutside
   }
 }
 </script>
@@ -59,6 +63,9 @@ export default {
 .menu-item-container {
   display: flex;
   height: 100%;
+  margin: 0 .1%;
+  border-radius: 10px;
+  transition: box-shadow .3s;
 }
 .content-open {
   transition: background-color .5s ease;
@@ -68,8 +75,6 @@ export default {
   box-shadow: 0px 0px 4px 1px rgba(148,148,148,0.71);
 }
 .menu-item-container:hover {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
   box-shadow: 0px 0px 4px 1px rgba(148,148,148,0.71);
 }
 
@@ -92,34 +97,30 @@ export default {
   z-index: 2;
   background: white;
   transform-origin: 0 0;
-  height: 100%;
   position: absolute;
   top: 100%;
   display: flex;
-  height: 6vh;
+  //height: auto;
+  max-height: 110px;
   box-shadow: 0px 4px 5px 1px rgba(148,148,148,0.71);
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .menu-content-animation-enter-active {
-  animation: bounce-out .5s reverse;
+  animation: bounce-out .4s reverse;
 }
 .menu-content-animation-leave-active {
-  animation: bounce-out .3s;
+  animation: bounce-out .2s;
 }
 @keyframes bounce-out {
   0% {
     transform: scale(1);
     opacity: 1;
   }
-  60% {
-    transform: scale(.2) translateY(0);
-    opacity: .8;
-  }
   100% {
-    transform: scale(.2) translateY(-100%);
+    transform: scale(0);
     opacity: 0;
   }
 }
