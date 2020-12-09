@@ -100,8 +100,8 @@ export default {
   position: absolute;
   top: 100%;
   display: flex;
-  //height: auto;
-  max-height: 110px;
+  height: 10vh;
+  flex-basis: 50px;
   box-shadow: 0px 4px 5px 1px rgba(148,148,148,0.71);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
