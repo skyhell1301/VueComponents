@@ -70,6 +70,7 @@ export default {
   justify-items: center;
   align-items: center;
   font-weight: bold;
+  font-size: .8em;
 }
 .clock {
   width: 95%;

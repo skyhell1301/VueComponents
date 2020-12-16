@@ -66,6 +66,7 @@ export default {
   margin: 0 .1%;
   border-radius: 10px;
   transition: box-shadow .3s;
+  width: 12vmax;
 }
 .content-open {
   transition: background-color .5s ease;
@@ -82,6 +83,7 @@ export default {
   display: grid;
   cursor: pointer;
   height: 100%;
+  width: 100%;
 }
 
 .title-menu-item {
@@ -89,8 +91,8 @@ export default {
   z-index: 2;
   justify-self: center;
   align-self: center;
-  margin: 0 10px;
-
+  font-size: .8em;
+  margin: 0 .3vmax;
 }
 
 .content-menu-item {
@@ -100,8 +102,6 @@ export default {
   position: absolute;
   top: 100%;
   display: flex;
-  height: 10vh;
-  flex-basis: 50px;
   box-shadow: 0px 4px 5px 1px rgba(148,148,148,0.71);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;

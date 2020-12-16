@@ -67,27 +67,9 @@ export default {
 </script>
 
 <style scoped>
-@media (max-width: 1920px) {
-  .wrapper_parameters {
-    font-size: 14px;
-  }
-}
-@media (max-width: 1680px) {
-  .wrapper_parameters {
-    font-size: 12px;
-  }
-}
-@media (max-width: 1330px) {
-  .wrapper_parameters {
-    font-size: 10px;
-  }
-}
-@media (max-width: 1080px) {
-  .wrapper_parameters {
-    font-size: 9px;
-  }
-}
+
 .wrapper_parameters {
+  font-size: .7em;
   display: grid;
   width: 100%;
   height: 100%;

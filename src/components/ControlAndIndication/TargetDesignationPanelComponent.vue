@@ -28,6 +28,7 @@ export default {
   background: linear-gradient(45deg, #f6f1f5 0%, #fcf7fb 100%);
   justify-items: center;
   align-items: center;
+  font-size: 1em;
 }
 
 .target-designation-panel-data {
@@ -40,7 +41,7 @@ export default {
 }
 
 .ZU-type {
-  font-size: 12px;
+  font-size: .8em;
   display: grid;
   grid-template-columns: 30% 70%;
 }

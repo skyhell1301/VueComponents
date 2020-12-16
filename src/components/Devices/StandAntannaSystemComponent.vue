@@ -19,7 +19,7 @@ export default {
 <style scoped>
 .stand-as-container {
   font-family: "sans-serif";
-  font-size: 12px;
+  font-size: .7em;
   font-weight: bold;
   display: grid;
   grid-template-rows: 70% 3% 27%;

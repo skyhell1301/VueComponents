@@ -77,36 +77,6 @@ export default {
 </script>
 
 <style scoped>
-@media (max-width: 1920px) {
-  .wrapper_device-display-component {
-    font-size: 12px;
-  }
-}
-@media (max-width: 1730px) {
-  .wrapper_device-display-component {
-    font-size: 10px;
-  }
-}
-@media (max-width: 1550px) {
-  .wrapper_device-display-component {
-    font-size: 9px;
-  }
-}
-@media (max-width: 1500px) {
-  .wrapper_device-display-component {
-    font-size: 8px;
-  }
-}
-@media (max-width: 1300px) {
-  .wrapper_device-display-component {
-    font-size: 6px;
-  }
-}
-@media (max-width: 1100px) {
-  .wrapper_device-display-component {
-    font-size: 5px;
-  }
-}
 .wrapper_device-display-component {
   display: grid;
   grid-template-rows: 5% 95%;
@@ -162,6 +132,8 @@ export default {
   font-weight: bold;
   font-stretch: semi-condensed;
   font-family: "sans-serif";
+  user-select: none;
+  font-size: .55em;
 }
 .device_display {
   grid-row: 2;

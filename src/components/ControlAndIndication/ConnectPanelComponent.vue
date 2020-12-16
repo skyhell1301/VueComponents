@@ -70,7 +70,7 @@ export default {
   grid-template-rows: 25% 75%;
   width: 95%;
   height: 90%;
-  font-size: 12px;
+  font-size: .6em;
   border: 1px black solid;
   border-radius: 7px;
   background: linear-gradient(180deg, #f6f1f5 0%, #f6f1f5 40%, #e2e2e1 50%, #fcf7fb 100%);

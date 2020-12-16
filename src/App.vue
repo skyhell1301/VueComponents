@@ -25,22 +25,20 @@ export default {
 body {
   overflow: hidden;
   margin: 0;
-  font-size: 16px;
+  font-size: 1vmax;
   display: grid;
   height: 100vh;
   width: 100vw;
+  min-width: 800px;
+  min-height: 600px;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   text-align: center;
   color: #2c3e50;
   display: grid;
-  grid-template-columns: 28% 60% 12%;
-  grid-template-rows: 5% 90% 5%;
-  //max-width: calc(100vh * 16 / 10);
-  max-height: calc(100vw * 10 / 16);
-  min-width: 1000px;
-  min-height: 625px;
+  grid-template-columns: 4fr 9fr 2fr;
+  grid-template-rows: 1fr 13fr 1fr;
   width: 100%;
   height: 100%;
   border: 1px solid black;
@@ -64,5 +62,15 @@ body {
   grid-column-start: 1;
   grid-column-end: 3;
   z-index: 2;
+}
+@media (max-width: 800px) {
+  body {
+    overflow: visible;
+  }
+}
+@media (max-height: 600px) {
+  body {
+    overflow: visible;
+  }
 }
 </style>

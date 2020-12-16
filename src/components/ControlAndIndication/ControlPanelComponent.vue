@@ -51,14 +51,17 @@ export default {
 .little-control-panel {
   display: grid;
   grid-template-rows: 30% 70%;
+  justify-items: center;
+  align-items: center;
   width: 95%;
   height: 90%;
-  font-size: 12px;
+  font-size: .6em;
   border: 1px black solid;
   border-radius: 7px;
   background: linear-gradient(180deg, #f6f1f5 0%, #f6f1f5 40%, #e2e2e1 50%, #fcf7fb 100%);
 }
 .control-panel-svg {
+  align-self: start;
   fill: #285876;
 }
 </style>

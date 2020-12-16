@@ -50,6 +50,10 @@
         <div class="item-title">Конвертер вверх 1</div>
       </div>
       <div class="setting-item">
+        <BURIcon class="item-icon"></BURIcon>
+        <div class="item-title">БУР вверх</div>
+      </div>
+      <div class="setting-item">
         <ArrowUpFIcon class="item-icon"></ArrowUpFIcon>
         <div class="item-title">Конвертер вверх 2</div>
       </div>
@@ -58,40 +62,83 @@
         <div class="item-title">Конвертер вниз 1</div>
       </div>
       <div class="setting-item">
+        <BURIcon class="item-icon"></BURIcon>
+        <div class="item-title">БУР вниз</div>
+      </div>
+      <div class="setting-item">
         <ArrowDownFIcon class="item-icon"></ArrowDownFIcon>
         <div class="item-title">Конвертер вниз 2</div>
       </div>
+      <div class="setting-item">
+        <AmplifierIcon class="item-icon"></AmplifierIcon>
+        <div class="item-title">УМ вверх 1</div>
+      </div>
+      <div class="setting-item">
+        <AmplifierIcon class="item-icon"></AmplifierIcon>
+        <div class="item-title">УМ вверх 2</div>
+      </div>
+      <div class="setting-item">
+        <MatrixIcon class="item-icon"></MatrixIcon>
+        <div class="item-title">Матрица вверх</div>
+      </div>
+      <div class="setting-item">
+        <MatrixIcon class="item-icon" style="transform: rotate(180deg)"></MatrixIcon>
+        <div class="item-title">Матрица вниз</div>
+      </div>
+      <div class="setting-item">
+        <BURIcon class="item-icon"></BURIcon>
+        <div class="item-title">МШУ</div>
+      </div>
+      <div class="setting-item">
+        <TestTranslyatorIcon class="item-icon"></TestTranslyatorIcon>
+        <div class="item-title">Тест - транслятор</div>
+      </div>
+      <div class="setting-item">
+        <ClockIcon class="item-icon"></ClockIcon>
+        <div class="item-title">СЕВ</div>
+      </div>
     </MenuItemComponent>
     <MenuItemComponent title-menu-item="Протоколы">
-      <svg class="content-active item-icon" height="100%" viewBox="0 0 80 60">
-        <path
-          d="M 52 0 L 58 6.545 L 58 29.455 L 80 29.455 L 80 31.637 L 62 31.637 L 62 32.727 L 80 32.727 L 80 34.909 L 58 34.909 L 58 55.637 C 58 55.637 58 57.818 57 58.909 C 56 60 54 60 54 60 L 23 60 C 23 60 21 60 20 58.909 C 19 57.818 19 55.637 19 55.637 L 19 34.909 L 0 34.909 L 0 32.727 L 19 32.727 L 19 31.637 L 0 31.637 L 0 29.455 L 19 29.455 L 19 6.545 L 26 0 Z M 27 2.182 L 21 7.637 L 21 54.545 C 21 54.545 21.088 55.705 22 56.727 C 22.913 57.751 24 57.818 24 57.818 L 53 57.818 C 53 57.818 54.087 57.751 55 56.727 C 55.912 55.705 56 54.545 56 54.545 L 56 7.637 L 51 2.182 Z M 28 3.273 L 50 3.273 L 54 7.637 L 23 7.637 Z M 23 8.727 L 54 8.727 L 54 55.637 L 50 55.637 L 50 45.818 C 50 45.818 50 44.727 49 44.727 C 48 44.727 48 45.818 48 45.818 L 48 55.637 L 47 55.637 L 47 45.818 C 47 45.818 47 44.727 46 44.727 C 45 44.727 45 45.818 45 45.818 L 45 55.637 L 44 55.637 L 44 45.818 C 44 45.818 44 44.727 43 44.727 C 42 44.727 42 45.818 42 45.818 L 42 55.637 L 41 55.637 L 41 45.818 C 41 45.818 41 44.727 40 44.727 C 39 44.727 39 45.818 39 45.818 L 39 55.637 L 38 55.637 L 38 45.818 C 38 45.818 38 44.727 37 44.727 C 36 44.727 36 45.818 36 45.818 L 36 55.637 L 35 55.637 L 35 45.818 C 35 45.818 35 44.727 34 44.727 C 33 44.727 33 45.818 33 45.818 L 33 55.637 L 23 55.637 Z M 24 17.455 L 53 17.455 L 53 10.909 L 24 10.909 Z M 24 26.182 L 53 26.182 L 53 19.637 L 24 19.637 Z M 33 39.273 L 53 39.273 L 53 30.545 L 33 30.545 Z M 27.68 32.335 C 26.2 32.335 25 33.643 25 35.258 C 25 36.873 26.2 38.182 27.68 38.182 C 29.16 38.182 30.36 36.873 30.36 35.258 C 30.36 33.643 29.16 32.335 27.68 32.335 Z"></path>
-      </svg>
-      <svg class="content-active item-icon" height="100%" viewBox="0 0 80 55">
-        <path
-          d="M 0 51.072 L 0 3.928 C 0 1.965 2.051 0 4.103 0 L 20.513 0 C 22.564 0 24.615 1.965 24.615 3.928 L 24.615 51.072 C 24.615 53.035 22.564 55 20.513 55 L 4.103 55 C 2.051 55 0 53.035 0 51.072 Z M 22.564 7.531 L 22.564 6.221 C 22.564 6.057 21.832 5.893 21.098 5.893 L 3.517 5.893 C 2.784 5.893 2.051 6.057 2.051 6.221 L 2.051 7.531 C 2.051 7.693 2.784 7.857 3.517 7.857 L 21.098 7.857 C 21.832 7.857 22.564 7.693 22.564 7.531 Z M 22.564 13.423 L 22.564 12.113 C 22.564 11.949 21.832 11.785 21.098 11.785 L 3.517 11.785 C 2.784 11.785 2.051 11.949 2.051 12.113 L 2.051 13.423 C 2.051 13.586 2.784 13.75 3.517 13.75 L 21.098 13.75 C 21.832 13.75 22.564 13.586 22.564 13.423 Z M 12.308 37.322 C 8.909 37.322 6.154 39.96 6.154 43.215 C 6.154 46.47 8.909 49.107 12.308 49.107 C 15.707 49.107 18.462 46.47 18.462 43.215 C 18.462 39.96 15.707 37.322 12.308 37.322 Z M 32.821 0 L 75.897 0 C 77.949 0 80 1.965 80 3.928 L 80 45.178 C 80 47.143 77.949 49.107 75.897 49.107 L 32.821 49.107 C 30.769 49.107 28.718 47.143 28.718 45.178 L 28.718 3.928 C 28.718 1.965 30.769 0 32.821 0 Z M 30.769 5.578 L 30.769 43.528 C 30.769 47.143 32.656 47.143 34.544 47.143 L 74.174 47.143 C 75.897 47.143 77.949 47.143 77.949 43.528 L 77.949 5.578 C 77.949 1.965 76.062 1.965 74.174 1.965 L 34.544 1.965 C 32.656 1.965 30.769 1.965 30.769 5.578 Z M 37.99 7.857 L 70.728 7.857 C 72.287 7.857 73.846 9.15 73.846 10.443 L 73.846 37.591 C 73.846 38.884 72.287 40.176 70.728 40.176 L 37.99 40.176 C 36.431 40.176 34.872 38.884 34.872 37.591 L 34.872 10.443 C 34.872 9.15 36.431 7.857 37.99 7.857 Z M 46.769 51.072 L 63.999 51.072 C 65.641 51.072 65.641 53.035 65.641 53.035 C 65.641 53.035 65.641 55 63.999 55 L 46.769 55 C 45.128 55 45.128 53.035 45.128 53.035 C 45.128 53.035 45.128 51.072 46.769 51.072 Z"></path>
-      </svg>
-      <svg class="content-active item-icon" height="100%" viewBox="0 0 80 55">
-        <path
-          d="M 0 51.072 L 0 3.928 C 0 1.965 2.051 0 4.103 0 L 20.513 0 C 22.564 0 24.615 1.965 24.615 3.928 L 24.615 51.072 C 24.615 53.035 22.564 55 20.513 55 L 4.103 55 C 2.051 55 0 53.035 0 51.072 Z M 22.564 7.531 L 22.564 6.221 C 22.564 6.057 21.832 5.893 21.098 5.893 L 3.517 5.893 C 2.784 5.893 2.051 6.057 2.051 6.221 L 2.051 7.531 C 2.051 7.693 2.784 7.857 3.517 7.857 L 21.098 7.857 C 21.832 7.857 22.564 7.693 22.564 7.531 Z M 22.564 13.423 L 22.564 12.113 C 22.564 11.949 21.832 11.785 21.098 11.785 L 3.517 11.785 C 2.784 11.785 2.051 11.949 2.051 12.113 L 2.051 13.423 C 2.051 13.586 2.784 13.75 3.517 13.75 L 21.098 13.75 C 21.832 13.75 22.564 13.586 22.564 13.423 Z M 12.308 37.322 C 8.909 37.322 6.154 39.96 6.154 43.215 C 6.154 46.47 8.909 49.107 12.308 49.107 C 15.707 49.107 18.462 46.47 18.462 43.215 C 18.462 39.96 15.707 37.322 12.308 37.322 Z M 32.821 0 L 75.897 0 C 77.949 0 80 1.965 80 3.928 L 80 45.178 C 80 47.143 77.949 49.107 75.897 49.107 L 32.821 49.107 C 30.769 49.107 28.718 47.143 28.718 45.178 L 28.718 3.928 C 28.718 1.965 30.769 0 32.821 0 Z M 30.769 5.578 L 30.769 43.528 C 30.769 47.143 32.656 47.143 34.544 47.143 L 74.174 47.143 C 75.897 47.143 77.949 47.143 77.949 43.528 L 77.949 5.578 C 77.949 1.965 76.062 1.965 74.174 1.965 L 34.544 1.965 C 32.656 1.965 30.769 1.965 30.769 5.578 Z M 37.99 7.857 L 70.728 7.857 C 72.287 7.857 73.846 9.15 73.846 10.443 L 73.846 37.591 C 73.846 38.884 72.287 40.176 70.728 40.176 L 37.99 40.176 C 36.431 40.176 34.872 38.884 34.872 37.591 L 34.872 10.443 C 34.872 9.15 36.431 7.857 37.99 7.857 Z M 46.769 51.072 L 63.999 51.072 C 65.641 51.072 65.641 53.035 65.641 53.035 C 65.641 53.035 65.641 55 63.999 55 L 46.769 55 C 45.128 55 45.128 53.035 45.128 53.035 C 45.128 53.035 45.128 51.072 46.769 51.072 Z"></path>
-      </svg>
+      <div class="setting-item">
+        <ProtocolIcon class="item-icon"></ProtocolIcon>
+        <div class="item-title">Протокол</div>
+      </div>
+      <div class="setting-item">
+        <BellIcon class="item-icon"></BellIcon>
+        <div class="item-title">Протокол аварийных сообщений</div>
+      </div>
     </MenuItemComponent>
     <MenuItemComponent title-menu-item="Настройки">
-      <svg class="content-active item-icon" height="100%" viewBox="0 0 80 60">
-        <path
-          d="M 52 0 L 58 6.545 L 58 29.455 L 80 29.455 L 80 31.637 L 62 31.637 L 62 32.727 L 80 32.727 L 80 34.909 L 58 34.909 L 58 55.637 C 58 55.637 58 57.818 57 58.909 C 56 60 54 60 54 60 L 23 60 C 23 60 21 60 20 58.909 C 19 57.818 19 55.637 19 55.637 L 19 34.909 L 0 34.909 L 0 32.727 L 19 32.727 L 19 31.637 L 0 31.637 L 0 29.455 L 19 29.455 L 19 6.545 L 26 0 Z M 27 2.182 L 21 7.637 L 21 54.545 C 21 54.545 21.088 55.705 22 56.727 C 22.913 57.751 24 57.818 24 57.818 L 53 57.818 C 53 57.818 54.087 57.751 55 56.727 C 55.912 55.705 56 54.545 56 54.545 L 56 7.637 L 51 2.182 Z M 28 3.273 L 50 3.273 L 54 7.637 L 23 7.637 Z M 23 8.727 L 54 8.727 L 54 55.637 L 50 55.637 L 50 45.818 C 50 45.818 50 44.727 49 44.727 C 48 44.727 48 45.818 48 45.818 L 48 55.637 L 47 55.637 L 47 45.818 C 47 45.818 47 44.727 46 44.727 C 45 44.727 45 45.818 45 45.818 L 45 55.637 L 44 55.637 L 44 45.818 C 44 45.818 44 44.727 43 44.727 C 42 44.727 42 45.818 42 45.818 L 42 55.637 L 41 55.637 L 41 45.818 C 41 45.818 41 44.727 40 44.727 C 39 44.727 39 45.818 39 45.818 L 39 55.637 L 38 55.637 L 38 45.818 C 38 45.818 38 44.727 37 44.727 C 36 44.727 36 45.818 36 45.818 L 36 55.637 L 35 55.637 L 35 45.818 C 35 45.818 35 44.727 34 44.727 C 33 44.727 33 45.818 33 45.818 L 33 55.637 L 23 55.637 Z M 24 17.455 L 53 17.455 L 53 10.909 L 24 10.909 Z M 24 26.182 L 53 26.182 L 53 19.637 L 24 19.637 Z M 33 39.273 L 53 39.273 L 53 30.545 L 33 30.545 Z M 27.68 32.335 C 26.2 32.335 25 33.643 25 35.258 C 25 36.873 26.2 38.182 27.68 38.182 C 29.16 38.182 30.36 36.873 30.36 35.258 C 30.36 33.643 29.16 32.335 27.68 32.335 Z"></path>
-      </svg>
+      <div class="setting-item">
+        <GearIcon class="item-icon"></GearIcon>
+        <div class="item-title">Настройки программы</div>
+      </div>
+      <div class="setting-item">
+        <LocalNetworkIcon class="item-icon"></LocalNetworkIcon>
+        <div class="item-title">Настройки ЛВС</div>
+      </div>
+      <div class="setting-item">
+        <BVOIcon class="item-icon"></BVOIcon>
+        <div class="item-title">БВО</div>
+      </div>
     </MenuItemComponent>
     <MenuItemComponent title-menu-item="Помощь">
-      <svg class="content-active item-icon" height="100%" viewBox="0 0 80 60">
-        <path
-          d="M 52 0 L 58 6.545 L 58 29.455 L 80 29.455 L 80 31.637 L 62 31.637 L 62 32.727 L 80 32.727 L 80 34.909 L 58 34.909 L 58 55.637 C 58 55.637 58 57.818 57 58.909 C 56 60 54 60 54 60 L 23 60 C 23 60 21 60 20 58.909 C 19 57.818 19 55.637 19 55.637 L 19 34.909 L 0 34.909 L 0 32.727 L 19 32.727 L 19 31.637 L 0 31.637 L 0 29.455 L 19 29.455 L 19 6.545 L 26 0 Z M 27 2.182 L 21 7.637 L 21 54.545 C 21 54.545 21.088 55.705 22 56.727 C 22.913 57.751 24 57.818 24 57.818 L 53 57.818 C 53 57.818 54.087 57.751 55 56.727 C 55.912 55.705 56 54.545 56 54.545 L 56 7.637 L 51 2.182 Z M 28 3.273 L 50 3.273 L 54 7.637 L 23 7.637 Z M 23 8.727 L 54 8.727 L 54 55.637 L 50 55.637 L 50 45.818 C 50 45.818 50 44.727 49 44.727 C 48 44.727 48 45.818 48 45.818 L 48 55.637 L 47 55.637 L 47 45.818 C 47 45.818 47 44.727 46 44.727 C 45 44.727 45 45.818 45 45.818 L 45 55.637 L 44 55.637 L 44 45.818 C 44 45.818 44 44.727 43 44.727 C 42 44.727 42 45.818 42 45.818 L 42 55.637 L 41 55.637 L 41 45.818 C 41 45.818 41 44.727 40 44.727 C 39 44.727 39 45.818 39 45.818 L 39 55.637 L 38 55.637 L 38 45.818 C 38 45.818 38 44.727 37 44.727 C 36 44.727 36 45.818 36 45.818 L 36 55.637 L 35 55.637 L 35 45.818 C 35 45.818 35 44.727 34 44.727 C 33 44.727 33 45.818 33 45.818 L 33 55.637 L 23 55.637 Z M 24 17.455 L 53 17.455 L 53 10.909 L 24 10.909 Z M 24 26.182 L 53 26.182 L 53 19.637 L 24 19.637 Z M 33 39.273 L 53 39.273 L 53 30.545 L 33 30.545 Z M 27.68 32.335 C 26.2 32.335 25 33.643 25 35.258 C 25 36.873 26.2 38.182 27.68 38.182 C 29.16 38.182 30.36 36.873 30.36 35.258 C 30.36 33.643 29.16 32.335 27.68 32.335 Z"></path>
-      </svg>
-      <svg class="content-active item-icon" height="100%" viewBox="0 0 80 55">
-        <path
-          d="M 0 51.072 L 0 3.928 C 0 1.965 2.051 0 4.103 0 L 20.513 0 C 22.564 0 24.615 1.965 24.615 3.928 L 24.615 51.072 C 24.615 53.035 22.564 55 20.513 55 L 4.103 55 C 2.051 55 0 53.035 0 51.072 Z M 22.564 7.531 L 22.564 6.221 C 22.564 6.057 21.832 5.893 21.098 5.893 L 3.517 5.893 C 2.784 5.893 2.051 6.057 2.051 6.221 L 2.051 7.531 C 2.051 7.693 2.784 7.857 3.517 7.857 L 21.098 7.857 C 21.832 7.857 22.564 7.693 22.564 7.531 Z M 22.564 13.423 L 22.564 12.113 C 22.564 11.949 21.832 11.785 21.098 11.785 L 3.517 11.785 C 2.784 11.785 2.051 11.949 2.051 12.113 L 2.051 13.423 C 2.051 13.586 2.784 13.75 3.517 13.75 L 21.098 13.75 C 21.832 13.75 22.564 13.586 22.564 13.423 Z M 12.308 37.322 C 8.909 37.322 6.154 39.96 6.154 43.215 C 6.154 46.47 8.909 49.107 12.308 49.107 C 15.707 49.107 18.462 46.47 18.462 43.215 C 18.462 39.96 15.707 37.322 12.308 37.322 Z M 32.821 0 L 75.897 0 C 77.949 0 80 1.965 80 3.928 L 80 45.178 C 80 47.143 77.949 49.107 75.897 49.107 L 32.821 49.107 C 30.769 49.107 28.718 47.143 28.718 45.178 L 28.718 3.928 C 28.718 1.965 30.769 0 32.821 0 Z M 30.769 5.578 L 30.769 43.528 C 30.769 47.143 32.656 47.143 34.544 47.143 L 74.174 47.143 C 75.897 47.143 77.949 47.143 77.949 43.528 L 77.949 5.578 C 77.949 1.965 76.062 1.965 74.174 1.965 L 34.544 1.965 C 32.656 1.965 30.769 1.965 30.769 5.578 Z M 37.99 7.857 L 70.728 7.857 C 72.287 7.857 73.846 9.15 73.846 10.443 L 73.846 37.591 C 73.846 38.884 72.287 40.176 70.728 40.176 L 37.99 40.176 C 36.431 40.176 34.872 38.884 34.872 37.591 L 34.872 10.443 C 34.872 9.15 36.431 7.857 37.99 7.857 Z M 46.769 51.072 L 63.999 51.072 C 65.641 51.072 65.641 53.035 65.641 53.035 C 65.641 53.035 65.641 55 63.999 55 L 46.769 55 C 45.128 55 45.128 53.035 45.128 53.035 C 45.128 53.035 45.128 51.072 46.769 51.072 Z"></path>
-      </svg>
-      <PCIcon class="content-active item-icon"></PCIcon>
+      <div class="setting-item">
+        <SKUIcon class="item-icon"></SKUIcon>
+        <div class="item-title">Спецификация</div>
+      </div>
+      <div class="setting-item">
+        <ProtocolIcon class="item-icon"></ProtocolIcon>
+        <div class="item-title">Протокол ТСУ</div>
+      </div>
+      <div class="setting-item">
+        <PCIcon class="item-icon"></PCIcon>
+        <div class="item-title">Системная информация</div>
+      </div>
+      <div class="setting-item">
+        <HelpIcon class="item-icon"></HelpIcon>
+        <div class="item-title">О программе</div>
+      </div>
     </MenuItemComponent>
   </div>
 </template>
@@ -110,6 +157,18 @@ import TelemetriaImitationIcon from '../../assets/images/SVGIconComponents/Telem
 import CortexWallIcon from '../../assets/images/SVGIconComponents/CortexWallIcon'
 import ArrowUpFIcon from '../../assets/images/SVGIconComponents/ArrowUpFIcon'
 import ArrowDownFIcon from '../../assets/images/SVGIconComponents/ArrowDownFIcon'
+import BURIcon from '../../assets/images/SVGIconComponents/BURIcon'
+import AmplifierIcon from '../../assets/images/SVGIconComponents/AmplifierIcon'
+import MatrixIcon from '../../assets/images/SVGIconComponents/MatrixIcon'
+import ClockIcon from '../../assets/images/SVGIconComponents/ClockIcon'
+import TestTranslyatorIcon from '../../assets/images/SVGIconComponents/TestTranslyatorIcon'
+import ProtocolIcon from '../../assets/images/SVGIconComponents/ProtocolIcon'
+import BellIcon from '../../assets/images/SVGIconComponents/BellIcon'
+import GearIcon from '../../assets/images/SVGIconComponents/GearIcon'
+import LocalNetworkIcon from '../../assets/images/SVGIconComponents/LocalNetworkIcon'
+import BVOIcon from '../../assets/images/SVGIconComponents/BVOIcon'
+import SKUIcon from '../../assets/images/SVGIconComponents/SKUIcon'
+import HelpIcon from '../../assets/images/SVGIconComponents/HelpIcon'
 
 export default {
   name: 'NavMenuComponent',
@@ -117,6 +176,18 @@ export default {
     return {}
   },
   components: {
+    HelpIcon,
+    SKUIcon,
+    BVOIcon,
+    LocalNetworkIcon,
+    GearIcon,
+    BellIcon,
+    ProtocolIcon,
+    TestTranslyatorIcon,
+    ClockIcon,
+    MatrixIcon,
+    AmplifierIcon,
+    BURIcon,
     ArrowDownFIcon,
     ArrowUpFIcon,
     CortexWallIcon,
@@ -139,20 +210,23 @@ export default {
 .nav-menu-container {
   background: #f0f0ef;
   position: relative;
-  width: 100%;
+  width: 37%;
   height: 60%;
   display: flex;
-  justify-content: start;
-  align-items: center;
-  align-self: end;
+  justify-content: space-between;
 }
 
 .setting-item {
   transition: all .2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   cursor: pointer;
-  margin: 10px;
-  padding: 3px;
-  font-size: 1.3vh;
+  margin: 0.6vmax;
+  padding: 0.3vmax;
+  font-size: .8em;
+  user-select: none;
 }
 
 .setting-item:hover {
@@ -163,12 +237,12 @@ export default {
 }
 
 .item-icon {
-  height: 5vh;
-  width: 5vh;
+  height: 2.5vmax;
+  width: 2.5vmax;
   fill: #285876;
 }
 
 .item-title {
-  margin-top: .7vh;
+  margin-top: .5vmax;
 }
 </style>

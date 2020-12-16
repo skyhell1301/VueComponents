@@ -225,7 +225,7 @@
     </DeviceDisplayComponent>
     <DeviceDisplayComponent id="test-translyator-id" title-device="ТЕСТ-ТРАНСЛЯТОР" class="test-translyator-device">
       <DisplayParametersComponent :device-data="testTranslyatorDeviceData">
-        <button style="height: 60%; width: 60%; align-self: center; justify-self: center;" @click="continueAnimation('TestTranslyatorToSwitch_1Line')">Анимация</button>
+        <button style="height: 60%; width: 60%; align-self: center; justify-self: center; font-size: .9em" @click="continueAnimation('TestTranslyatorToSwitch_1Line')">Анимация</button>
       </DisplayParametersComponent>
     </DeviceDisplayComponent>
     <DeviceDisplayComponent id="amplifier-device-1-id" title-device="УМ #1" class="amplifier-device-1">
@@ -916,7 +916,6 @@ export default {
   grid-row: 7;
   height: 100%;
   width: 60%;
-  font-size: 8px;
   justify-self: start;
   align-self: start;
 }
